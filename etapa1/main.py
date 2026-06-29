@@ -36,7 +36,7 @@ def incluir_figura_nova(event):
     if not incompleta(figura_nova): # para evitar incluir figuras incompletas, como uma linha sem comprimento ou um rabisco com um único ponto
         figuras.append(figura_nova) 
     desenhar_figuras()
-
+# Função que desenha todas as figuras que já foram incluídas em figuras
 def desenhar_figuras():
     canvas.delete("all")
     for fig, values, cor_b, cor_p in figuras:
@@ -52,6 +52,7 @@ def desenhar_figuras():
             raio = ( (values[2] - values[0])**2 + (values[3] - values[1])**2 ) ** 0.5
             canvas.create_oval(values[0]-raio, values[1]-raio, values[0]+raio, values[1]+raio, outline=cor_b, fill=cor_p)   
 
+# Função que desenha a figura que está sendo criada, mas ainda não foi incluída em figuras
 def desenhar_figura_nova():
     fig, values, cor_b, cor_p = figura_nova
     if fig == "linha":
@@ -66,6 +67,7 @@ def desenhar_figura_nova():
             raio = ( (values[2] - values[0])**2 + (values[3] - values[1])**2 ) ** 0.5
             canvas.create_oval(values[0]-raio, values[1]-raio, values[0]+raio, values[1]+raio, dash=(4, 2), outline=cor_borda_var.get(), fill=cor_preenchimento_var.get())  
 
+# Função que verifica se a figura está incompleta
 def incompleta(figura):
     fig, values, cor_b, cor_p = figura
     if fig == "linha":
