@@ -21,7 +21,7 @@ def atualizar_figura_nova(event):
     else:
         figura_nova.atualizar_coordenadas(event)
         desenhar_figuras()
-        figura_nova.desenhar_figura(canvas, pontilhado=True)
+        figura_nova.desenhar_figura_pontilhada(canvas)
     
 
 #solta
