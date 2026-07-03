@@ -1,7 +1,7 @@
 from tkinter import *
 from figuras import Figuras
 
-class Linha(Figuras):
+class Oval(Figuras):
     def __init__(self, event, fill="black", outline="black"):
         self.ini_x = event.x
         self.ini_y = event.y
@@ -20,7 +20,7 @@ class Linha(Figuras):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
 
     def desenhar_figura_pontilhada(self, canvas):
-        canvas.create_line(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, dash=(4, 2))
-    
+        canvas.create_oval(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, outline=self.outline, dash=(4, 2))
+
     def desenhar_figura(self, canvas):
-        canvas.create_line(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill)
+        canvas.create_oval(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, outline=self.outline)
