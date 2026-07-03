@@ -41,15 +41,6 @@ def limpar_canvas():
     canvas.delete("all")
     figuras = []
 
-#Desfaz a última figura desenhada, removendo-a da lista de figuras
-def desfazer(event):
-    global figuras
-    if figuras != []:
-        figuras.remove(figuras[-1])
-        desenhar_figuras()
-    else:
-        pass
-
 figuras = []       # Todas as figuras desenhadas
 figura_nova = None # Figura que está sendo desenhada, mas ainda não foi incluída em figuras
 
@@ -101,6 +92,5 @@ botao_limpar.grid(column=6, row=0, sticky=W, **paddings)
 canvas.bind('<ButtonPress-1>', iniciar_figura_nova)
 canvas.bind('<B1-Motion>', atualizar_figura_nova)
 canvas.bind('<ButtonRelease-1>', incluir_figura_nova)
-canvas.bind('<ButtonPress-3>', desfazer) # Desfaz a última figura desenhada
 
 root.mainloop()
