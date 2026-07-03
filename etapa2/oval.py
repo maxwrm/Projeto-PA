@@ -19,8 +19,10 @@ class Oval(Figuras):
     def esta_incompleta(self):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
 
+    #Desenha a figura pontilhada no canvas
     def desenhar_figura_pontilhada(self, canvas):
         canvas.create_oval(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, outline=self.outline, dash=(4, 2))
 
+    #Desenha a figura final no canvas
     def desenhar_figura(self, canvas):
         canvas.create_oval(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, outline=self.outline)

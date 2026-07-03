@@ -6,13 +6,14 @@ from figuras import Figuras
 from rabisco import Rabisco
 from linha import Linha
 from retangulo import Retangulo
-#from oval import Oval
+from oval import Oval
 from circulo import Circulo
 
 class Interface(Tk):
     def __init__(self):
         super().__init__()
         
+        #Lista que salva as figuras que já foram desenhadas no canvas 
         self.figuras = []
         self.figura_nova = None
 
@@ -22,8 +23,9 @@ class Interface(Tk):
         
         #Titulo e tamanho da janela
         self.title("Desenhando Figuras com tkinter 2")
-        self.geometry("1200x1200")
+        self.geometry("1400x1400")
         
+        #Frame principal da interface
         self.frame = ttk.Frame(self)
         self.frame.pack()
 
@@ -69,13 +71,14 @@ class Interface(Tk):
         self.canvas.bind('<ButtonPress-1>', self.iniciar_figura_nova)
         self.canvas.bind('<B1-Motion>', self.atualizar_figura_nova)
         self.canvas.bind('<ButtonRelease-1>', self.incluir_figura_nova)
+        self.canvas.bind('<ButtonPress-3>', self.desfazer)
 
-    #clica
+    #Clica no botão do mouse para iniciar a criação de uma nova figura
     def iniciar_figura_nova(self, event):
         tipo = eval(self.tipo_figura_var.get())
         self.figura_nova = tipo(event, fill=self.cor_preenchimento_var.get(), outline=self.cor_borda_var.get())
 
-    #segura
+    #Segura o botão do mouse para atualizar a figura nova, desenhando pontilhada enquanto o mouse se move
     def atualizar_figura_nova(self, event):
         if self.tipo_figura_var.get() == 'Rabisco':
             self.desenhar_figuras()
@@ -86,18 +89,26 @@ class Interface(Tk):
             self.figura_nova.desenhar_figura_pontilhada(self.canvas)
         
 
-    #solta
+    #Solta o botão do mouse para incluir a figura nova na lista de figuras e desenhar todas as figuras no canvas
     def incluir_figura_nova(self, event):
         if not self.figura_nova.esta_incompleta():
             self.figuras.append(self.figura_nova)
         self.desenhar_figuras()
         
+    #Desenha todas as figuras no canvas, incluindo a figura nova se ela estiver sendo desenhada
     def desenhar_figuras(self):
         self.canvas.delete("all")
         for figura in self.figuras:
             figura.desenhar_figura(self.canvas)
 
-    #quando o botão limpar é clicado, todas as figuras são removidas do canvas e da lista de figuras
+    #Quando o botão limpar é clicado, todas as figuras são removidas do canvas e da lista de figuras
     def limpar_canvas(self):
         self.canvas.delete("all")
         self.figuras = []
+
+    def desfazer(self, event):
+        if self.figuras != []:
+            self.figuras.remove(self.figuras[-1])
+            self.desenhar_figuras()
+        else:
+            pass
