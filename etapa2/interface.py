@@ -63,6 +63,13 @@ class Interface(Tk):
         option_menu = ttk.OptionMenu(self.frame, self.cor_borda_var,'black', 'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple')
         option_menu.grid(column=5, row=1, sticky=W, **paddings)
 
+        lbl_fonte = ttk.Label(self.frame, text='Tamanho da fonte:')
+        lbl_fonte.grid(column=6, row=1, sticky=W, **paddings)
+
+        self.fonte_var = StringVar(self)
+        option_menu_fonte = ttk.OptionMenu(self.frame, self.fonte_var, 1, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+        option_menu_fonte.grid(column=7, row=1, sticky=W, **paddings)
+
         #Botoes
         
         #Botao de limpar o canvas, que remove todas as figuras do canvas e da lista de figuras
@@ -81,7 +88,7 @@ class Interface(Tk):
     #Clica no botão do mouse para iniciar a criação de uma nova figura
     def iniciar_figura_nova(self, event):
         tipo = eval(self.tipo_figura_var.get())
-        self.figura_nova = tipo(event, fill=self.cor_preenchimento_var.get(), outline=self.cor_borda_var.get())
+        self.figura_nova = tipo(event, fill=self.cor_preenchimento_var.get(), outline=self.cor_borda_var.get(), width=self.fonte_var.get())
 
     #Segura o botão do mouse para atualizar a figura nova, desenhando pontilhada enquanto o mouse se move
     def atualizar_figura_nova(self, event):
