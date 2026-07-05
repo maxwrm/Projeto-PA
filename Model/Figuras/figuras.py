@@ -1,4 +1,3 @@
-from tkinter import *
 from abc import ABC, abstractmethod
 
 class Figuras(ABC):
@@ -19,5 +18,5 @@ class Figuras(ABC):
 
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta, abstractmethod, deve ser implementado nas classes filhas
     @abstractmethod
-    def esta_incompleta(self):
+    def incompleta(self):
         pass

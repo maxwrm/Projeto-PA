@@ -1,6 +1,5 @@
 from tkinter import *
-from figuras import Figuras
-from control import Desenhar
+from .figuras import Figuras
 
 class Rabisco(Figuras):
     def __init__(self, event, fill="black", outline="black", width=1):
@@ -11,13 +10,15 @@ class Rabisco(Figuras):
     def atualizar_coordenadas(self,event, canvas):
         ponto = (event.x, event.y)
         self.pontos.append(ponto)
-        if len(self.pontos) >= 2:
-            canvas.create_line(self.pontos, fill=self.fill, width=self.width, dash=(4,2))
+        self.desenhar_figura_pontilhada(canvas)
+
+    def desenhar_figura_pontilhada(self, canvas):   
+        canvas.create_line(self.pontos, fill=self.fill, width=self.width, dash=(4,2))
     
     #Desenha a figura pontilhada no canvas
     def desenhar_figura(self, canvas):
         canvas.create_line(self.pontos, fill=self.fill, width=self.width)
     
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
-    def esta_incompleta(self):
+    def incompleta(self):
         return len(self.pontos) <= 1

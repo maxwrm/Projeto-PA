@@ -1,8 +1,7 @@
 from tkinter import *
-from figuras import Figuras
-from control import Desenhar
+from .figuras import Figuras
 
-class Retangulo(Figuras):
+class Linha(Figuras):
     def __init__(self, event, fill="black", outline="black", width=1):
         super().__init__(event, fill, outline, width)
     
@@ -12,13 +11,13 @@ class Retangulo(Figuras):
         self.fim_y = event.y
 
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
-    def esta_incompleta(self):
+    def incompleta(self):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
 
     #Desenha a figura pontilhada no canvas
     def desenhar_figura_pontilhada(self, canvas):
-        canvas.create_rectangle(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, outline=self.outline, width=self.width, dash=(4, 2))
-
+        canvas.create_line(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, width=self.width, dash=(4, 2))
+    
     #Desenha a figura final no canvas
     def desenhar_figura(self, canvas):
-        canvas.create_rectangle(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, outline=self.outline, width=self.width)
+        canvas.create_line(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, width=self.width)
