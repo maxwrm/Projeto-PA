@@ -6,7 +6,7 @@ from figuras import Figuras
 from rabisco import Rabisco
 from linha import Linha
 from retangulo import Retangulo
-#from oval import Oval
+from oval import Oval
 from circulo import Circulo
 
 class Interface(Tk):
