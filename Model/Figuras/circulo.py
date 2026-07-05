@@ -14,12 +14,16 @@ class Circulo(Figuras):
     def incompleta(self):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
 
+    #Calcula o raio do circulo
+    def calcular_raio(self):
+        return ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
+    
     #Desenha a figura pontilhada no canvas
     def desenhar_figura_pontilhada(self, canvas):
-        raio = ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
+        raio = self.calcular_raio()
         canvas.create_oval(self.ini_x - raio, self.ini_y - raio, self.ini_x + raio, self.ini_y + raio, fill=self.fill, outline=self.outline, width=self.width, dash=(4, 2))
 
     #Desenha a figura final no canvas
     def desenhar_figura(self, canvas):
-        raio = ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
+        raio = self.calcular_raio()
         canvas.create_oval(self.ini_x - raio, self.ini_y - raio, self.ini_x + raio, self.ini_y + raio, fill=self.fill, outline=self.outline, width=self.width)
