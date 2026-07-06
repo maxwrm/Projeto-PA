@@ -12,10 +12,7 @@ class Controlador:
     def iniciar_figura(self, event):
         tipo = self.view.get_tipo_figura()
         classe = eval(tipo)
-        if classe == Rabisco:
-            self.figura_nova = classe(event, fill=self.view.get_cor_preenchimento(), width=self.view.get_espessura())
-        else: #qualquer outra figura sem ser Rabisco
-            self.figura_nova = classe(event, fill=self.view.get_cor_preenchimento(), outline=self.view.get_cor_borda(), width=self.view.get_espessura())
+        self.figura_nova = classe(event, fill=self.view.get_cor_preenchimento(), outline=self.view.get_cor_borda(), width=self.view.get_espessura())
     
     def atualizar_figura(self, event):
         if self.figura_nova == None:
@@ -23,8 +20,9 @@ class Controlador:
         
         if isinstance(self.figura_nova, Rabisco):
             self.view.desenhar_figuras(self.model.get_figuras())
-            self.figura_nova.atualizar_coordenadas(event, canvas=self.view.canvas)
-            
+            self.figura_nova.atualizar_coordenadas(event)
+            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view.canvas)
+
         else: #qualquer outra figura sem ser Rabisco
             self.figura_nova.atualizar_coordenadas(event)
 

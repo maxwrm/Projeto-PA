@@ -7,10 +7,9 @@ class Rabisco(Figuras):
         self.pontos = [(event.x, event.y)]
     
     #Atualiza as coordenadas do ponto final da figura, adicionando o ponto à lista de pontos
-    def atualizar_coordenadas(self,event, canvas):
+    def atualizar_coordenadas(self,event):
         ponto = (event.x, event.y)
         self.pontos.append(ponto)
-        self.desenhar_figura_pontilhada(canvas)
 
     def desenhar_figura_pontilhada(self, canvas):   
         canvas.create_line(self.pontos, fill=self.fill, width=self.width, dash=(4,2))
