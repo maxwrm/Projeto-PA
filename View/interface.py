@@ -26,7 +26,7 @@ class Interface(Tk):
 
         # option menu - figuras
         self.tipo_figura_var = StringVar(self) # Guarda o tipo de figura selecionado no option menu (linha ou rabisco)
-        option_menu = ttk.OptionMenu(self.frame, self.tipo_figura_var,'Linha', 'Linha', 'Rabisco', 'Retangulo', 'Oval', 'Circulo')
+        option_menu = ttk.OptionMenu(self.frame, self.tipo_figura_var,'Linha', 'Linha', 'Rabisco', 'Retangulo', 'Oval', 'Circulo', 'Quadrado')
         option_menu.grid(column=1, row=1, sticky=W, **paddings)
         #label - cores - preenchimento
         label = ttk.Label(self.frame, text='Cores de preenchimento:')
