@@ -21,30 +21,31 @@ class Interface(Tk):
         self.canvas.grid(column=0, row=2, columnspan=10, sticky=W, **paddings)
 
         # label - figuras
-        label = ttk.Label(self.frame, text='Figuras:')
-        label.grid(column=0, row=1, sticky=W, **paddings)
+        label_tipo_figura = ttk.Label(self.frame, text='Figuras:')
+        label_tipo_figura.grid(column=0, row=1, sticky=W, **paddings)
 
         # option menu - figuras
         self.tipo_figura_var = StringVar(self) # Guarda o tipo de figura selecionado no option menu (linha ou rabisco)
-        option_menu = ttk.OptionMenu(self.frame, self.tipo_figura_var,'Linha', 'Linha', 'Rabisco', 'Retangulo', 'Oval', 'Circulo', 'Quadrado')
-        option_menu.grid(column=1, row=1, sticky=W, **paddings)
-        #label - cores - preenchimento
-        label = ttk.Label(self.frame, text='Cores de preenchimento:')
-        label.grid(column=2, row=1, sticky=W, **paddings)
+        option_menu_tipo_figura = ttk.OptionMenu(self.frame, self.tipo_figura_var,'Linha', 'Linha', 'Rabisco', 'Retangulo', 'Oval', 'Circulo', 'Quadrado')
+        option_menu_tipo_figura.grid(column=1, row=1, sticky=W, **paddings)
+        
+        #label - cor - preenchimento
+        label_cor_preenchimento = ttk.Label(self.frame, text='Cores de preenchimento:')
+        label_cor_preenchimento.grid(column=2, row=1, sticky=W, **paddings)
 
-        # option menu - cores - preenchimento
+        # option menu - cor - preenchimento
         self.cor_preenchimento_var = StringVar(self) # Guarda a cor de preenchimento selecionada no option menu
-        option_menu = ttk.OptionMenu(self.frame, self.cor_preenchimento_var, 'black', None, 'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple')
-        option_menu.grid(column=3, row=1, sticky=W, **paddings)
+        option_menu_cor_preenchimento = ttk.OptionMenu(self.frame, self.cor_preenchimento_var, 'black', None, 'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple')
+        option_menu_cor_preenchimento.grid(column=3, row=1, sticky=W, **paddings)
 
-        # label - cores - borda
-        label = ttk.Label(self.frame, text='Cores de borda:')
-        label.grid(column=4, row=1, sticky=W, **paddings)
+        # label - cor - borda
+        label_cor_borda = ttk.Label(self.frame, text='Cores de borda:')
+        label_cor_borda.grid(column=4, row=1, sticky=W, **paddings)
 
-        # option menu - cores - borda
+        # option menu - cor - borda
         self.cor_borda_var = StringVar(self) # Guarda a cor de borda selecionada no option menu
-        option_menu = ttk.OptionMenu(self.frame, self.cor_borda_var,'black', 'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple')
-        option_menu.grid(column=5, row=1, sticky=W, **paddings)
+        option_menu_cor_borda = ttk.OptionMenu(self.frame, self.cor_borda_var,'black', 'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple')
+        option_menu_cor_borda.grid(column=5, row=1, sticky=W, **paddings)
 
         # label - espessura do traço
         label_espessura = ttk.Label(self.frame, text='Espessura do traço:')
@@ -52,8 +53,8 @@ class Interface(Tk):
 
         # label - espessura do traço
         self.espessura_var = StringVar(self) #Guarda o valor da espessira do traço selecionada no option menu
-        option_menu_fonte = ttk.OptionMenu(self.frame, self.espessura_var, 1, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
-        option_menu_fonte.grid(column=7, row=1, sticky=W, **paddings)
+        option_menu_espessura = ttk.OptionMenu(self.frame, self.espessura_var, 1, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+        option_menu_espessura.grid(column=7, row=1, sticky=W, **paddings)
 
         #Associa eventos à métodos da própria função, os quais apenas vão executar métodos definidos na classe Controlador e usador por controlador
         self.canvas.bind("<ButtonPress-1>", self.clique_mouse)
