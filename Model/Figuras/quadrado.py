@@ -44,7 +44,6 @@ class Quadrado(Figuras):
 
     #Desenha a figura final no canvas
     def desenhar_figura(self, canvas):
-        lado = self.calcular_lado()
         x, y = self.calcular_ponto_final()
         
         canvas.create_rectangle(self.ini_x, self.ini_y, x, y, fill=self.fill, outline=self.outline, width=self.width)
