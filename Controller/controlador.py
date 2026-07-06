@@ -39,6 +39,9 @@ class Controlador:
             self.view.desenhar_figuras(self.model.get_figuras())
 
             self.figura_nova = None # Evita continuar desenhando o tipo anterior se a figura escolhida no menu não estiver implementada
+        else: #Se a figura estiver incompleta, apenas atualiza o canvas com as figuras já existentes
+            self.view.desenhar_figuras(self.model.get_figuras())
+            self.figura_nova = None
     
     def limpar(self):
         self.model.limpar_figuras()

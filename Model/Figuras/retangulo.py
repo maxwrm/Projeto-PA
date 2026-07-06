@@ -12,7 +12,7 @@ class Retangulo(Figuras):
 
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
     def incompleta(self):
-        return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
+        return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y) or self.ini_x == self.fim_x or self.ini_y == self.fim_y
 
     #Desenha a figura pontilhada no canvas
     def desenhar_figura_pontilhada(self, canvas):
