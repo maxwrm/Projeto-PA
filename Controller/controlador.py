@@ -1,53 +1,54 @@
-from Model.Figuras import *
-from Model.desenho import Desenho
-from View.interface import Interface
+from model.Figuras import *
+from model.desenho import Desenho
+from view import *
 
 class Controlador:
-    def __init__(self, model:Desenho, view:Interface):
+    def __init__(self, model:Desenho, view_canvas: ViewCanvas, view_interface: ViewInterface):
         self.model = model
-        self.view = view
+        self.view_canvas = view_canvas
+        self.view_interface = view_interface
 
         self.figura_nova = None
     
     def iniciar_figura(self, event):
-        tipo = self.view.get_tipo_figura()
+        tipo = self.view_interface.get_tipo_figura()
         classe = eval(tipo)
-        self.figura_nova = classe(event, fill=self.view.get_cor_preenchimento(), outline=self.view.get_cor_borda(), width=self.view.get_espessura())
+        self.figura_nova = classe(event, fill=self.view_interface.get_cor_preenchimento(), outline=self.view_interface.get_cor_borda(), width=self.view_interface.get_espessura())
     
     def atualizar_figura(self, event):
         if self.figura_nova == None:
             return
         
         if isinstance(self.figura_nova, Rabisco):
-            self.view.desenhar_figuras(self.model.get_figuras())
+            self.view_canvas.desenhar_figuras(self.model.get_figuras())
             self.figura_nova.atualizar_coordenadas(event)
-            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view.canvas)
+            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view_canvas.canvas)
 
         else: #qualquer outra figura sem ser Rabisco
             self.figura_nova.atualizar_coordenadas(event)
 
-            self.view.desenhar_figuras(self.model.get_figuras())
+            self.view_canvas.desenhar_figuras(self.model.get_figuras())
 
-            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view.canvas)
+            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view_canvas.canvas)
     
     def finalizar_figura(self, event):
         if self.figura_nova == None:
             return
-        if not self.figura_nova.incompleta():
+        elif not self.figura_nova.incompleta():
             self.model.adicionar_figura(self.figura_nova)
 
-            self.view.desenhar_figuras(self.model.get_figuras())
+            self.view_canvas.desenhar_figuras(self.model.get_figuras())
 
             self.figura_nova = None # Evita continuar desenhando o tipo anterior se a figura escolhida no menu não estiver implementada
         else: #Se a figura estiver incompleta, apenas atualiza o canvas com as figuras já existentes
-            self.view.desenhar_figuras(self.model.get_figuras())
+            self.view_canvas.desenhar_figuras(self.model.get_figuras())
             self.figura_nova = None
     
     def limpar(self):
         self.model.limpar_figuras()
-        self.view.limpar_canvas()
-    
+        self.view_canvas.limpar_canvas()
+
     def desfazer(self):
         self.model.remover_figura()
         
-        self.view.desenhar_figuras(self.model.get_figuras())
+        self.view_canvas.desenhar_figuras(self.model.get_figuras())
