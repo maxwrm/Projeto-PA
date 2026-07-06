@@ -1,4 +1,3 @@
-from tkinter import *
 from .figuras import Figuras
 
 class Quadrado(Figuras):
@@ -36,14 +35,3 @@ class Quadrado(Figuras):
 
         return x, y
     
-    #Desenha a figura pontilhada no canvas
-    def desenhar_figura_pontilhada(self, canvas):
-        x, y = self.calcular_ponto_final()
-        
-        canvas.create_rectangle(self.ini_x, self.ini_y, x, y, fill=self.fill, outline=self.outline, width=self.width, dash=(4, 2))
-
-    #Desenha a figura final no canvas
-    def desenhar_figura(self, canvas):
-        x, y = self.calcular_ponto_final()
-        
-        canvas.create_rectangle(self.ini_x, self.ini_y, x, y, fill=self.fill, outline=self.outline, width=self.width)

@@ -1,4 +1,3 @@
-from tkinter import *
 from .figuras import Figuras
 
 class Rabisco(Figuras):
@@ -7,16 +6,9 @@ class Rabisco(Figuras):
         self.pontos = [(event.x, event.y)]
     
     #Atualiza as coordenadas do ponto final da figura, adicionando o ponto à lista de pontos
-    def atualizar_coordenadas(self,event):
+    def atualizar_coordenadas(self, event):
         ponto = (event.x, event.y)
         self.pontos.append(ponto)
-
-    def desenhar_figura_pontilhada(self, canvas):   
-        canvas.create_line(self.pontos, fill=self.fill, width=self.width, dash=(4,2))
-    
-    #Desenha a figura pontilhada no canvas
-    def desenhar_figura(self, canvas):
-        canvas.create_line(self.pontos, fill=self.fill, width=self.width)
     
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
     def incompleta(self):

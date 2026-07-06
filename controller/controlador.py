@@ -19,17 +19,9 @@ class Controlador:
         if self.figura_nova == None:
             return
         
-        if isinstance(self.figura_nova, Rabisco):
-            self.view_canvas.desenhar_figuras(self.model.get_figuras())
-            self.figura_nova.atualizar_coordenadas(event)
-            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view_canvas.canvas)
-
-        else: #qualquer outra figura sem ser Rabisco
-            self.figura_nova.atualizar_coordenadas(event)
-
-            self.view_canvas.desenhar_figuras(self.model.get_figuras())
-
-            self.figura_nova.desenhar_figura_pontilhada(canvas=self.view_canvas.canvas)
+        self.figura_nova.atualizar_coordenadas(event)
+        self.view_canvas.desenhar_figuras(self.model.get_figuras())
+        self.view_canvas.desenhar_figura_pontilhada(self.figura_nova)
     
     def finalizar_figura(self, event):
         if self.figura_nova == None:

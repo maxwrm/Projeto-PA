@@ -1,4 +1,3 @@
-from tkinter import *
 from .figuras import Figuras
 
 class Linha(Figuras):
@@ -13,11 +12,3 @@ class Linha(Figuras):
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
     def incompleta(self):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
-
-    #Desenha a figura pontilhada no canvas
-    def desenhar_figura_pontilhada(self, canvas):
-        canvas.create_line(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, width=self.width, dash=(4, 2))
-    
-    #Desenha a figura final no canvas
-    def desenhar_figura(self, canvas):
-        canvas.create_line(self.ini_x, self.ini_y, self.fim_x, self.fim_y, fill=self.fill, width=self.width)

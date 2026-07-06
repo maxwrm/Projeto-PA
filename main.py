@@ -1,4 +1,4 @@
-from controller import Controlador
+from controller.controlador import Controlador
 from model.desenho import Desenho
 from view import *
 
