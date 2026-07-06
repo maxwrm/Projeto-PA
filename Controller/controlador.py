@@ -1,4 +1,4 @@
-from model.Figuras import *
+from model.figuras import *
 from model.desenho import Desenho
 from view import *
 

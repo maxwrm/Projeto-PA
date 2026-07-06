@@ -1,13 +1,12 @@
 from tkinter import *
 
-class ViewCanvas(Tk):
-    def __init__(self):
-        super().__init__()
+class ViewCanvas:
+    def __init__(self, interface):
         self.controller = None
-        self.interface = None
+        self.interface = interface
 
         # Área de desenho
-        self.canvas = Canvas(self.frame, bg='white', width=1200, height=1200)
+        self.canvas = Canvas(self.interface.frame, bg='white', width=1200, height=1200)
         self.canvas.grid(column=0, row=2, columnspan=10, sticky=W, **self.interface.get_paddings())
 
         #Associa eventos à métodos da própria função, os quais apenas vão executar métodos definidos na classe Controlador e usador por controlador
