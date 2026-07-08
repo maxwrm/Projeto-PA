@@ -21,51 +21,76 @@ class ViewInterface(Tk):
         self.cor_preenchimento_hex = "#000000"
         self.cor_borda_hex = "#000000"
 
-        # label - figuras
-        label_tipo_figura = ttk.Label(self.frame, text='Figuras:')
-        label_tipo_figura.grid(column=0, row=1, sticky=W, **self.paddings)
+        #Dicionário das figuras
+        self.figuras_dicionario = {"/":"Linha", "○":"Circulo", "□":"Quadrado", "▭":"Retangulo", "⬭":"Oval"}
+        
+        #frame das figuras
+        self.frame_figuras = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken", height=10)
+        self.frame_figuras.grid(column=1, row=0, rowspan=2, sticky="ns", **self.paddings)
 
-        # option menu - figuras
-        self.tipo_figura_var = StringVar(self) # Guarda o tipo de figura selecionado no option menu (linha ou rabisco)
-        option_menu_tipo_figura = ttk.OptionMenu(self.frame, self.tipo_figura_var,'Linha', 'Linha', 'Rabisco', 'Retangulo', 'Oval', 'Circulo', 'Quadrado')
-        option_menu_tipo_figura.grid(column=1, row=1, sticky=W, **self.paddings)
+        #Guarda o tipo de figura selecionada
+        self.tipo_figura_var = StringVar(value="Rabisco")
+
+        #botoes das figuras
+        col, ro = 0, 1
+        for simbolo, nome_figura in self.figuras_dicionario.items():
+
+            radiobutton_figura = Radiobutton(master=self.frame_figuras, text=simbolo, indicatoron=False, font=("", 15), variable=self.tipo_figura_var, value=nome_figura, height=1, width=2, relief="raised", borderwidth=3)
+            radiobutton_figura.grid(column=col, row=ro, padx=2, pady=2)
+            if col > 0 and col % 5 == 0: ro+=1
+            col+=1
+
+        # label - figuras
+        label_tipo_figura = ttk.Label(self.frame_figuras, text='Figuras', font=("", 8))
+        label_tipo_figura.grid(column=0, row=0, sticky=N, columnspan=5, **self.paddings)
+
+        #Botao para tirar o preenchimento 
+        self.botao_sem_preenchimento = Button(master=self.frame_figuras, text="Sem preenchimento", font=("", 8), command=self.get_sem_cor_preenchimento)
+        self.botao_sem_preenchimento.grid(column=0, row=5, columnspan=5, sticky=S, **self.paddings)
         
         #frame para cores
         self.frame_cores = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken")
-        self.frame_cores.grid(column=2, row=0, rowspan=2, **self.paddings)
+        self.frame_cores.grid(column=2, row=0, rowspan=2, sticky="ns", **self.paddings)
 
         #Botão e indicador de preenchimento
         self.botao_preenchimento = ttk.Button(master=self.frame_cores, text='Cor Preenchimento/Linha', command=self.escolher_cor_preenchimento)
-        self.botao_preenchimento.grid(column=0, row=0, sticky=W, **self.paddings)
+        self.botao_preenchimento.grid(column=0, row=1, sticky=W, **self.paddings)
 
         self.indicador_preenchimento = Label(master=self.frame_cores, width=3, height=1, bg=self.cor_preenchimento_hex)
-        self.indicador_preenchimento.grid(column=1, row=0, sticky=W, **self.paddings)
+        self.indicador_preenchimento.grid(column=1, row=1, sticky=W, **self.paddings)
 
         # Botão e Indicador de Borda
         self.botao_borda = ttk.Button(master=self.frame_cores, text='Cor Borda', command=self.escolher_cor_borda)
-        self.botao_borda.grid(column=0, row=1, sticky=W, **self.paddings)
+        self.botao_borda.grid(column=0, row=2, sticky=W, **self.paddings)
         
         self.indicador_borda = Label(master=self.frame_cores, width=3, height=1, bg=self.cor_borda_hex)
-        self.indicador_borda.grid(column=1, row=1, sticky=W, **self.paddings)
+        self.indicador_borda.grid(column=1, row=2, sticky=W, **self.paddings)
 
         #Label de cores que fica abaixo dos botões de selecionar
         self.label_cores = Label(master=self.frame_cores, text="Cores", font=("", 8))
-        self.label_cores.grid(column=0, row=3, columnspan=2)
+        self.label_cores.grid(column=0, row=0, columnspan=2, sticky=N)
 
-        # label - espessura do traço
-        label_espessura = ttk.Label(self.frame, text='Espessura do traço:')
-        label_espessura.grid(column=6, row=1, sticky=W, **self.paddings)
+        #frame de ferramentas
+        self.frame_ferramentas = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken")
+        self.frame_ferramentas.grid(column=3, row=0, rowspan=2, sticky="ns", **self.paddings)
 
-        # label - espessura do traço
-        self.espessura_var = StringVar(self) #Guarda o valor da espessira do traço selecionada no option menu
-        option_menu_espessura = ttk.OptionMenu(self.frame, self.espessura_var, 1, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
-        option_menu_espessura.grid(column=7, row=1, sticky=W, **self.paddings)
+        #botão de pincel que ficará em ferramentas
+        self.radiobutton_pincel = Radiobutton(master=self.frame_ferramentas, text="🖌", font=("", 15), value="Rabisco", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
+        self.radiobutton_pincel.grid(column=0, row=1, **self.paddings)
+        #variavel da espessura
+        self.espessura_var = IntVar(value=1)
 
-        # Botões - também só associa a metodos de Controlador
+        #Escala de espessura do traço
+        self.escala_espessura = Scale(master=self.frame_ferramentas, from_=1, to=50, orient="vertical", label="Pincel", variable=self.espessura_var)
+        self.escala_espessura.grid(column=1, row=1, rowspan=2, sticky="ens", **self.paddings)
+
+        #label de ferramentas
+        self.label_ferramentas = Label(master=self.frame_ferramentas, text="Ferramentas", font=("", 8))
+        self.label_ferramentas.grid(column=0, row=0, columnspan=3, sticky=S)
         
         #Botao de limpar o canvas, que remove todas as figuras do canvas e da lista de figuras
         botao_limpar = ttk.Button(self.frame, text='Limpar', command=self.botao_limpar)
-        botao_limpar.grid(column=8, row=0, sticky=W, **self.paddings)
+        botao_limpar.grid(column=5, row=0, sticky=W, **self.paddings)
 
         #Botao de desfazer a ultima figura desenhada, que remove a ultima figura da lista de figuras e redesenha todas as figuras no canvas
         botao_desfazer = ttk.Button(self.frame, text='↩', command=self.botao_desfazer)
@@ -83,6 +108,9 @@ class ViewInterface(Tk):
             self.cor_borda_hex = cor[1]
             self.indicador_borda.config(bg=cor[1])
 
+    def get_sem_cor_preenchimento(self):
+        self.cor_preenchimento_hex = None
+
     def get_cor_preenchimento(self):
         return self.cor_preenchimento_hex
 
@@ -93,7 +121,7 @@ class ViewInterface(Tk):
         return self.tipo_figura_var.get()
     
     def get_espessura(self):
-        return int(self.espessura_var.get())
+        return self.espessura_var.get()
 
     def get_paddings(self):
         return self.paddings
