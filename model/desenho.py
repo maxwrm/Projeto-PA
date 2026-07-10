@@ -5,7 +5,8 @@ class Desenho:
 
     def adicionar_figura(self, figura):
         self.figuras.append(figura)
-    
+        self.figuras_removidas.clear()  # Limpa a lista de figuras removidas ao adicionar uma nova figura
+
     def remover_figura(self):
         if self.figuras:
             figura_removida = self.figuras.pop()
