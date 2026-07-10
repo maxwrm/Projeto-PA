@@ -44,3 +44,7 @@ class Controlador:
         self.model.remover_figura()
         
         self.view_canvas.desenhar_figuras(self.model.get_figuras())
+    
+    def refazer(self):
+        self.model.refazer_figura()
+        self.view_canvas.desenhar_figuras(self.model.get_figuras())

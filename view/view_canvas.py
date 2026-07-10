@@ -71,4 +71,3 @@ class ViewCanvas:
 
     def soltar_mouse(self, event):
         self.controller.finalizar_figura(event)
-
