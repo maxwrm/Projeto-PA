@@ -93,12 +93,12 @@ class ViewInterface(Tk):
         botao_limpar.grid(column=5, row=0, sticky=W, **self.paddings)
 
         #Botao de desfazer a ultima figura desenhada, que remove a ultima figura da lista de figuras e redesenha todas as figuras no canvas
-        botao_desfazer = ttk.Button(self.frame, text='↩', command=self.botao_desfazer)
+        botao_desfazer = ttk.Button(self.frame, text='↩', command=self.botao_desfazer, width=3)
         botao_desfazer.grid(column=0, row=0, sticky=W, **self.paddings)
 
         #Botao de refazer a ultima figura removida, que adiciona a ultima figura removida de volta na lista de figuras e redesenha todas as figuras no canvas
-        botao_refazer = ttk.Button(self.frame, text='↪', command=self.botao_refazer)
-        botao_refazer.grid(column=5, row=0, sticky=W, **self.paddings)
+        botao_refazer = ttk.Button(self.frame, text='↪', command=self.botao_refazer, width=3)
+        botao_refazer.grid(column=5, row=0, sticky=E, **self.paddings)
 
     def escolher_cor_preenchimento(self):
         cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self.cor_preenchimento_hex)
