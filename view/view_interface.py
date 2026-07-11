@@ -13,6 +13,7 @@ class ViewInterface(Tk):
         self.frame.pack()
 
         self.controller = None
+        self.menu_arquivo = None
 
         # Widgets arranjados com Layout grid dentro de frame
         self.paddings = {'padx': 5, 'pady': 5}
@@ -100,6 +101,10 @@ class ViewInterface(Tk):
         botao_refazer = ttk.Button(self.frame, text='↪', command=self.botao_refazer, width=3)
         botao_refazer.grid(column=5, row=0, sticky=E, **self.paddings)
 
+        #Botao de alternar entre esconder ou mostar o menu_arquivo
+        botao_alternar_menu = ttk.Button(self.frame, text="💾", command=self.botao_alternar_menu, width=3)
+        botao_alternar_menu.grid(column=10,row=0, sticky=E, **self.paddings)
+
     def escolher_cor_preenchimento(self):
         cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self.cor_preenchimento_hex)
         if cor[1]: # Se o usuário não cancelar a janela
@@ -141,3 +146,6 @@ class ViewInterface(Tk):
     def botao_refazer(self):
         if self.controller:
             self.controller.refazer()
+    
+    def botao_alternar_menu(self):
+        self.menu_arquivo.alternar()
