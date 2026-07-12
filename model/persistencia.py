@@ -12,7 +12,7 @@ class Persistencia:
         """monta e retorna o caminho para o arquivo """
         nome = nome.strip()
         if not nome.endswith(".pkl"):
-            nome += ".pk1"
+            nome += ".pkl"
         return os.path.join(self.pasta, nome)
 
     def salvar(self, figuras, nome:str):

@@ -13,15 +13,15 @@ class Rabisco_Ferramenta(Ferramenta):
             return
 
         self.figura_nova.atualizar_coordenadas(event)
-        self.controlador.desenhar_figuras()
+        self.controlador.desenhar_todas_figuras()
         self.desenhar_figura(self.figura_nova, dash=(4, 2))
 
     #Finaliza a figura em construção, adicionando-a ao modelo se estiver completa
     def mouse_solto(self, event):
         if self.figura_nova is not None and not self.figura_nova.incompleta():
-            self.controlador.model.adicionar_figura(self.figura_nova)
+            self.controlador.model_desenho.adicionar_figura(self.figura_nova)
 
-        self.controlador.desenhar_figuras()
+        self.controlador.desenhar_todas_figuras()
         self.figura_nova = None
 
     #Desenha o rabisco no canvas. Mantém o comportamento original: o rabisco não fica pontilhado

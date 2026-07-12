@@ -1,13 +1,16 @@
 from model.figuras import *
 from model.desenho import Desenho
+from model.persistencia import Persistencia
 from view import *
 from .ferramentas import *
 
 class Controlador:
-    def __init__(self, model:Desenho, view_canvas: ViewCanvas, view_interface: ViewInterface):
-        self.model = model
+    def __init__(self, model_desenho:Desenho, model_persistencia:Persistencia, view_canvas: ViewCanvas, view_interface: ViewInterface, view_menu_arquivo:ViewMenuArquivo):
+        self.model_desenho = model_desenho
+        self.model_persistencia = model_persistencia
         self.view_canvas = view_canvas
         self.view_interface = view_interface
+        self.view_menu_arquivo = view_menu_arquivo
 
         #Dicionário que mapeia o nome da figura (usado na interface) para o seu respectivo estado/ferramenta.
         self.ferramentas = {
@@ -43,22 +46,45 @@ class Controlador:
         self.ferramenta_atual.mouse_solto(event)
         self.ferramenta_atual = None
 
-    #Redesenha, do zero, todas as figuras já salvas no model
-    def desenhar_figuras(self):
+    #Redesenha, do zero, todas as figuras já salvas no model_desenho
+    def desenhar_todas_figuras(self):
         self.view_canvas.limpar_canvas()
-        for figura in self.model.get_figuras():
+        for figura in self.model_desenho.get_figuras():
             ferramenta = self.ferramentas[type(figura).__name__]
             ferramenta.desenhar_figura(figura)
 
     #Limpa todo o quadro canvas
     def limpar(self):
-        self.model.limpar_figuras()
+        self.model_desenho.limpar_figuras()
         self.view_canvas.limpar_canvas()
 
     def desfazer(self):
-        self.model.remover_figura()
+        self.model_desenho.remover_figura()
         self.desenhar_todas_figuras()
 
     def refazer(self):
-        self.model.refazer_figura()
+        self.model_desenho.refazer_figura()
         self.desenhar_todas_figuras()
+
+    def salvar(self, nome):
+        """Salva o desenho atual"""
+        figuras = self.model_desenho.get_figuras()
+        self.model_persistencia.salvar(figuras, nome)
+        arquivos = self.listar_arquivos()
+        self.view_menu_arquivo.atualizar_arquivos_salvos(arquivos)
+    
+    def carregar(self, nome):
+        """Carrega um desenho salvo"""
+        figuras = self.model_persistencia.carregar(nome)
+        self.model_desenho.limpar_figuras()
+        for figura in figuras:
+            self.model_desenho.adicionar_figura(figura)
+        self.desenhar_todas_figuras()
+    
+    def listar_arquivos(self):
+        """Retorna lista de arquivos salvos"""
+        return self.model_persistencia.listar_salvos()
+    
+    def atualiza_lista(self):
+        arquivos = self.listar_arquivos()
+        self.view_menu_arquivo.atualizar_arquivos_salvos(arquivos)
