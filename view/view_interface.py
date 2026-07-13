@@ -19,6 +19,7 @@ class ViewInterface(Tk):
         self.paddings = {'padx': 5, 'pady': 5}
 
         #Cores padrões
+        self.cor_background_hex = "#FFFFFF"
         self.cor_preenchimento_hex = "#000000"
         self.cor_borda_hex = "#000000"
 
@@ -78,12 +79,17 @@ class ViewInterface(Tk):
         #botão de pincel que ficará em ferramentas
         self.radiobutton_pincel = Radiobutton(master=self.frame_ferramentas, text="🖌", font=("", 15), value="Rabisco", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
         self.radiobutton_pincel.grid(column=0, row=1, **self.paddings)
+
+        #botão de borracha que ficará em ferramentas
+        self.radiobutton_borracha = Radiobutton(master=self.frame_ferramentas, text="⌫", font=("", 15), value="Borracha", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
+        self.radiobutton_borracha.grid(column=1, row=1, **self.paddings)
+
         #variavel da espessura
         self.espessura_var = IntVar(value=1)
 
         #Escala de espessura do traço
         self.escala_espessura = Scale(master=self.frame_ferramentas, from_=1, to=50, orient="vertical", label="Pincel", variable=self.espessura_var)
-        self.escala_espessura.grid(column=1, row=1, rowspan=2, sticky="ens", **self.paddings)
+        self.escala_espessura.grid(column=2, row=1, rowspan=2, sticky="ens", **self.paddings)
 
         #label de ferramentas
         self.label_ferramentas = Label(master=self.frame_ferramentas, text="Ferramentas", font=("", 8))
@@ -131,6 +137,9 @@ class ViewInterface(Tk):
     
     def get_espessura(self):
         return self.espessura_var.get()
+    
+    def get_cor_background(self):
+        return self.cor_background_hex
 
     def get_paddings(self):
         return self.paddings

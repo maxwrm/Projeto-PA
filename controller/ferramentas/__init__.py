@@ -5,3 +5,4 @@ from .oval_ferramenta import Oval_Ferramenta
 from .quadrado_ferramenta import Quadrado_Ferramenta
 from .circulo_ferramenta import Circulo_Ferramenta
 from .rabisco_ferramenta import Rabisco_Ferramenta
+from .borracha_ferramenta import Borracha_Ferramenta

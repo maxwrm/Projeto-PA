@@ -20,6 +20,7 @@ class Controlador:
             "Quadrado": Quadrado_Ferramenta(self),
             "Circulo": Circulo_Ferramenta(self),
             "Rabisco": Rabisco_Ferramenta(self),
+            "Borracha": Borracha_Ferramenta(self),
         }
 
         self.ferramenta_atual = None
