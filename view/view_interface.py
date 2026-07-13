@@ -43,16 +43,16 @@ class ViewInterface(Tk):
             col+=1
 
         # label - figuras
-        label_tipo_figura = ttk.Label(self.frame_figuras, text='Figuras', font=("", 8))
+        label_tipo_figura = ttk.Label(self.frame_figuras, text='Formas', font=("", 8))
         label_tipo_figura.grid(column=0, row=0, sticky=N, columnspan=5, **self.paddings)
-
-        #Botao para tirar o preenchimento 
-        self.botao_sem_preenchimento = Button(master=self.frame_figuras, text="Sem preenchimento", font=("", 8), command=self.get_sem_cor_preenchimento)
-        self.botao_sem_preenchimento.grid(column=0, row=5, columnspan=5, sticky=S, **self.paddings)
         
         #frame para cores
         self.frame_cores = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken")
         self.frame_cores.grid(column=2, row=0, rowspan=2, sticky="ns", **self.paddings)
+
+        #Botao para tirar o preenchimento 
+        self.botao_sem_preenchimento = Button(master=self.frame_cores, text="Sem preenchimento", font=("", 8), command=self.get_sem_cor_preenchimento)
+        self.botao_sem_preenchimento.grid(column=0, row=3, columnspan=2, sticky=S, **self.paddings)
 
         #Botão e indicador de preenchimento
         self.botao_preenchimento = ttk.Button(master=self.frame_cores, text='Cor Preenchimento/Linha', command=self.escolher_cor_preenchimento)
@@ -74,7 +74,7 @@ class ViewInterface(Tk):
 
         #frame de ferramentas
         self.frame_ferramentas = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken")
-        self.frame_ferramentas.grid(column=3, row=0, rowspan=2, sticky="ns", **self.paddings)
+        self.frame_ferramentas.grid(column=0, row=0, rowspan=2, sticky="ns", **self.paddings)
 
         #botão de pincel que ficará em ferramentas
         self.radiobutton_pincel = Radiobutton(master=self.frame_ferramentas, text="🖌", font=("", 15), value="Rabisco", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
@@ -97,11 +97,11 @@ class ViewInterface(Tk):
         
         #Botao de limpar o canvas, que remove todas as figuras do canvas e da lista de figuras
         botao_limpar = ttk.Button(self.frame, text='Limpar', command=self.botao_limpar)
-        botao_limpar.grid(column=5, row=0, sticky=W, **self.paddings)
+        botao_limpar.grid(column=5, row=0, sticky=N, **self.paddings)
 
         #Botao de desfazer a ultima figura desenhada, que remove a ultima figura da lista de figuras e redesenha todas as figuras no canvas
         botao_desfazer = ttk.Button(self.frame, text='↩', command=self.botao_desfazer, width=3)
-        botao_desfazer.grid(column=0, row=0, sticky=W, **self.paddings)
+        botao_desfazer.grid(column=5, row=0, sticky=W, **self.paddings)
 
         #Botao de refazer a ultima figura removida, que adiciona a ultima figura removida de volta na lista de figuras e redesenha todas as figuras no canvas
         botao_refazer = ttk.Button(self.frame, text='↪', command=self.botao_refazer, width=3)
@@ -109,7 +109,7 @@ class ViewInterface(Tk):
 
         #Botao de alternar entre esconder ou mostar o menu_arquivo
         botao_alternar_menu = ttk.Button(self.frame, text="💾", command=self.botao_alternar_menu, width=3)
-        botao_alternar_menu.grid(column=10,row=0, sticky=E, **self.paddings)
+        botao_alternar_menu.grid(column=6,row=0, sticky=N, **self.paddings)
 
     def escolher_cor_preenchimento(self):
         cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self.cor_preenchimento_hex)

@@ -21,8 +21,8 @@ class ViewMenuArquivo(Tk):
 
         self.paddings = {"padx": 5, "pady": 5}
 
-        self.botao_salvar = ttk.Button(self.frame, text="Salvar", command=self.botao_salvar)
-        self.botao_salvar.grid(column=0, row=0, **self.paddings)
+        self.botaoSalvar = ttk.Button(self.frame, text="Salvar", command=self.botao_salvar)
+        self.botaoSalvar.grid(column=0, row=0, **self.paddings)
 
         self.label_arquivo_nome = ttk.Label(self.frame, text="Nenhum arquivo")
         self.label_arquivo_nome.grid(column=1, row=0, **self.paddings)
@@ -31,8 +31,8 @@ class ViewMenuArquivo(Tk):
         self.caixa_texto.grid(column=2, row=0, **self.paddings)
         self.caixa_texto.bind("<Return>", self.apertar_enter)
 
-        self.botao_carregar = ttk.Button(self.frame, text="Carregar", command=self.botao_carregar)
-        self.botao_carregar.grid(column=0, row=1, **self.paddings)
+        self.botaoCarregar = ttk.Button(self.frame, text="Carregar", command=self.botao_carregar)
+        self.botaoCarregar.grid(column=0, row=1, **self.paddings)
 
         self.combobox_carregar = ttk.Combobox(self.frame, textvariable=self.arquivo_carregado, values=self.arquivos_salvos, state="readonly", width=20)
         self.combobox_carregar.grid(column=1, row=1, **self.paddings)

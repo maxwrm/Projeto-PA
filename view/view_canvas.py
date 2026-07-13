@@ -7,7 +7,7 @@ class ViewCanvas:
         self.interface = interface
 
         # Área de desenho
-        self.canvas = Canvas(self.interface.frame, bg=self.interface.get_cor_background(), width=1200, height=1200)
+        self.canvas = Canvas(self.interface.frame, bg=self.interface.get_cor_background(), width=1152, height=648)
         self.canvas.grid(column=0, row=2, columnspan=10, sticky=W, **self.interface.get_paddings())
 
         #Associa eventos à métodos da própria função, os quais apenas vão executar métodos definidos na classe Controlador e usador por controlador

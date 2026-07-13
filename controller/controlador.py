@@ -21,6 +21,8 @@ class Controlador:
             "Circulo": Circulo_Ferramenta(self),
             "Rabisco": Rabisco_Ferramenta(self),
             "Borracha": Borracha_Ferramenta(self),
+            #"Poligono": Poligono_Ferramenta(self),
+            #"Triangulo": Triangulo_Ferramenta(self)
         }
 
         self.ferramenta_atual = None

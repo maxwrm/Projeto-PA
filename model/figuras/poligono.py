@@ -1,0 +1,6 @@
+from .figuras import Figuras
+
+class Poligono(Figuras):
+    def __init__(self, event, fill="black", outline="black", width=1):
+        super().__init__(event, fill, outline, width)
+        pass

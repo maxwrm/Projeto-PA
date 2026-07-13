@@ -6,3 +6,5 @@ from .quadrado_ferramenta import Quadrado_Ferramenta
 from .circulo_ferramenta import Circulo_Ferramenta
 from .rabisco_ferramenta import Rabisco_Ferramenta
 from .borracha_ferramenta import Borracha_Ferramenta
+from .poligono_ferramenta import Poligono_Ferramenta
+from .triangulo_ferramenta import Triangulo_Ferramenta

@@ -13,7 +13,7 @@ class Quadrado(Figuras):
     def incompleta(self):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y)
 
-    #Calcula o raio do circulo
+    #Calcula a diagonal do quadrado
     def calcular_diagonal(self):
         return ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
     

@@ -5,4 +5,6 @@ from .rabisco import Rabisco
 from .retangulo import Retangulo
 from .quadrado import Quadrado
 from .borracha import Borracha
+from .poligono import Poligono
 from .figuras import Figuras
+from .triangulo import Triangulo_Reto
