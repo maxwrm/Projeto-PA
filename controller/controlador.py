@@ -23,6 +23,7 @@ class Controlador:
             "Borracha": Borracha_Ferramenta(self),
             #"Poligono": Poligono_Ferramenta(self),
             #"Triangulo": Triangulo_Ferramenta(self)
+            "Selecao": Selecao_Ferramenta(self)
         }
 
         self.ferramenta_atual = None

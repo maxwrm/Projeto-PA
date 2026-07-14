@@ -1,4 +1,5 @@
 from .figuras import Figuras
+from model.geometria import Geometria
 
 class Circulo(Figuras):
     def __init__(self, event, fill="black", outline="black", width=1):
@@ -16,3 +17,9 @@ class Circulo(Figuras):
     #Calcula o raio do circulo
     def calcular_raio(self):
         return ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
+
+    def contem(self, px, py):
+        pass
+    
+    def mover(self, dx, dy):
+        pass

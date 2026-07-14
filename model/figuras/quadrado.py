@@ -34,4 +34,19 @@ class Quadrado(Figuras):
             y = self.ini_y - lado
 
         return x, y
+
+    def contem(self, px, py):
+        margem = max(3, self.width)
+        fim_x, fim_y = self.calcular_ponto_final()
+        min_x = min(self.ini_x, fim_x) - margem
+        max_x = max(self.ini_x, fim_x) + margem
+        min_y = min(self.ini_y, fim_y) - margem
+        max_y = max(self.ini_y, fim_y) + margem
+        return min_x <= px <= max_x and min_y <= py <= max_y
+    
+    def mover(self, dx, dy):
+        self.ini_x += dx
+        self.fim_x += dx
+        self.ini_y += dy
+        self.fim_y += dy
     

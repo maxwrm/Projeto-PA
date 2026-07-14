@@ -84,6 +84,10 @@ class ViewInterface(Tk):
         self.radiobutton_borracha = Radiobutton(master=self.frame_ferramentas, text="⌫", font=("", 15), value="Borracha", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
         self.radiobutton_borracha.grid(column=1, row=1, **self.paddings)
 
+        #botao de selecionar que ficará em ferramentas
+        self.radiobutton_selecao = Radiobutton(master=self.frame_ferramentas, text="⇖", font=("", 15), value="Selecao", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
+        self.radiobutton_selecao.grid(column=0, row=2, **self.paddings)
+        
         #variavel da espessura
         self.espessura_var = IntVar(value=1)
 

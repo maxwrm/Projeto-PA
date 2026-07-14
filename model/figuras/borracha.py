@@ -1,4 +1,5 @@
 from .figuras import Figuras
+from model.geometria import Geometria
 
 class Borracha(Figuras):
     def __init__(self, event, fill="black", outline="black", width=1):
@@ -13,3 +14,9 @@ class Borracha(Figuras):
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
     def incompleta(self):
         return len(self.pontos) <= 1
+
+    def contem(self, px, py):
+        pass
+
+    def mover(self, dx, dy):
+        pass

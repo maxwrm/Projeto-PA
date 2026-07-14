@@ -20,3 +20,11 @@ class Figuras(ABC):
     @abstractmethod
     def incompleta(self):
         pass
+
+    #@abstractmethod
+    def contem(self, px, py):
+        pass
+    
+    #@abstractmethod
+    def mover(self, dx, dy):
+        pass
