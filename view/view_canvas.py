@@ -32,6 +32,9 @@ class ViewCanvas:
     def desenhar_rabisco(self, pontos, fill, width):
         self.canvas.create_line(pontos, fill=fill, width=width)
 
+    def desenhar_poligono(self, pontos, fill, width, dash=None):
+        self.canvas.create_polygon(pontos, fill=fill, width=width, dash=dash)
+
     
     def clique_mouse(self, event):
         self.controller.iniciar_figura(event)

@@ -24,7 +24,7 @@ class ViewInterface(Tk):
         self.cor_borda_hex = "#000000"
 
         #Dicionário das figuras
-        self.figuras_dicionario = {"/":"Linha", "○":"Circulo", "□":"Quadrado", "▭":"Retangulo", "⬭":"Oval"}
+        self.figuras_dicionario = {"/":"Linha", "○":"Circulo", "□":"Quadrado", "▭":"Retangulo", "⬭":"Oval", "△": "Triangulo_Reto", "▨": "Poligono"}
         
         #frame das figuras
         self.frame_figuras = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken", height=10)
@@ -39,7 +39,9 @@ class ViewInterface(Tk):
 
             radiobutton_figura = Radiobutton(master=self.frame_figuras, text=simbolo, indicatoron=False, font=("", 15), variable=self.tipo_figura_var, value=nome_figura, height=1, width=2, relief="raised", borderwidth=3)
             radiobutton_figura.grid(column=col, row=ro, padx=2, pady=2)
-            if col > 0 and col % 5 == 0: ro+=1
+            if col > 0 and col % 4 == 0: 
+                ro+=1
+                col = -1
             col+=1
 
         # label - figuras

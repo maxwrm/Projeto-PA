@@ -13,7 +13,7 @@ class Borracha(Figuras):
     
     #Se os pontos iniciais e finais forem iguais, a figura está incompleta
     def incompleta(self):
-        return len(self.pontos) <= 1
+        return False
 
     def contem(self, px, py):
         pass

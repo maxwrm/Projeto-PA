@@ -15,8 +15,14 @@ class Rabisco(Figuras):
     def incompleta(self):
         return len(self.pontos) <= 1
 
+    # (px, py) está perto (<=epsilon) de self
     def contem(self, px, py):
-        pass
+        epsilon = 3
+        return any(Geometria.distancia(x1, y1, x2, y2, px, py) <= epsilon
+                    for (x1, y1), (x2, y2) in zip(self.pontos, self.pontos[1:]))
     
     def mover(self, dx, dy):
-        pass
+        for i in range(len(self.pontos)) :
+            (x, y) = self.pontos[i]
+            self.pontos[i] = (x+dx, y+dy)
+
