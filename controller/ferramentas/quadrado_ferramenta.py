@@ -26,5 +26,7 @@ class Quadrado_Ferramenta(Ferramenta):
 
     #Desenha o quadrado no canvas
     def desenhar_figura(self, figura, dash=None):
+        if dash==None:
+            dash=self.obter_dash(figura)
         fim_x, fim_y = figura.calcular_ponto_final()
         self.controlador.view_canvas.desenhar_retangulo(figura.ini_x, figura.ini_y, fim_x, fim_y, fill=figura.fill, outline=figura.outline, width=figura.width, dash=dash)

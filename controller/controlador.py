@@ -34,7 +34,8 @@ class Controlador:
 
         if self.ferramenta_atual is None: # Evita continuar caso a figura escolhida no menu não esteja implementada
             return
-
+        
+        self.mudar_ferramenta(self.ferramenta_atual)
         self.ferramenta_atual.mouse_pressionado(event)
 
     def atualizar_figura(self, event):
@@ -56,6 +57,11 @@ class Controlador:
         for figura in self.model_desenho.get_figuras():
             ferramenta = self.ferramentas[type(figura).__name__]
             ferramenta.desenhar_figura(figura)
+
+    def mudar_ferramenta(self, nova_ferramenta):
+        self.model_desenho.limpa_selecao()
+        self.ferramenta_atual = nova_ferramenta
+        self.desenhar_todas_figuras()
 
     #Limpa todo o quadro canvas
     def limpar(self):

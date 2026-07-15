@@ -25,3 +25,8 @@ class Ferramenta(ABC):
     @abstractmethod
     def desenhar_figura(self, figura, dash=None):
         pass
+
+    def obter_dash(self, figura):
+        if figura.selecionada:
+            return (4, 2)
+        return None

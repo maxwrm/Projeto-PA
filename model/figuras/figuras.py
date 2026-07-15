@@ -9,6 +9,7 @@ class Figuras(ABC):
         self.fill = fill
         self.width = width
         self.outline = outline
+        self.selecionada = False
         self.figuras = []
 
     #Atualiza as coordenadas do ponto final da figura, abstractmethod, deve ser implementado nas classes filhas
@@ -21,10 +22,12 @@ class Figuras(ABC):
     def incompleta(self):
         pass
 
-    #@abstractmethod
+    #Verifica se o ponto clicado na tela contém uma figura
+    @abstractmethod
     def contem(self, px, py):
         pass
     
-    #@abstractmethod
+    #Move a figura clicada
+    @abstractmethod
     def mover(self, dx, dy):
         pass

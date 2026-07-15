@@ -26,5 +26,7 @@ class Circulo_Ferramenta(Ferramenta):
 
     #Desenha o circulo no canvas
     def desenhar_figura(self, figura, dash=None):
+        if dash==None:
+            dash=self.obter_dash(figura)
         raio = figura.calcular_raio()
         self.controlador.view_canvas.desenhar_oval(figura.ini_x - raio, figura.ini_y - raio, figura.ini_x + raio, figura.ini_y + raio, fill=figura.fill, outline=figura.outline, width=figura.width, dash=dash)

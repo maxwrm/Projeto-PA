@@ -33,6 +33,8 @@ class Desenho:
             self.figuras.append(self.figuras_removidas.pop())
     
     def limpa_selecao(self) :
+        for figura in self.figuras:
+            figura.selecionada = False
         self.indice_selecionada = -1
 
     def seleciona(self, px, py) :
@@ -46,6 +48,14 @@ class Desenho:
             return self.figuras[self.indice_selecionada]
         else :
             return None
+        
+    #Para a figura selecionada ficar marcada com dash
+    def atualizar_figura_selecionada(self):
+        for figura in self.figuras:
+            figura.selecionada = False
+
+        if self.indice_selecionada != -1:
+            self.figuras[self.indice_selecionada].selecionada = True
     
     # Copiar/Colar
     def copiar_selecionada(self) :
@@ -59,7 +69,6 @@ class Desenho:
             self.buffer = copy.deepcopy(f)
 
     #**** Operações sobre a figura selecionada
-
     def selecionada_para_topo(self) :
         s = self.indice_selecionada 
         if s != -1 :

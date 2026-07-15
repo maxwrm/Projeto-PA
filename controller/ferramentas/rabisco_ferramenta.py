@@ -24,7 +24,8 @@ class Rabisco_Ferramenta(Ferramenta):
         self.controlador.desenhar_todas_figuras()
         self.figura_nova = None
 
-    #Desenha o rabisco no canvas. Mantém o comportamento original: o rabisco não fica pontilhado
-    #mesmo enquanto está sendo construído (dash é ignorado de propósito)
+    #Desenha o rabisco no canvas: o rabisco não fica pontilhado
     def desenhar_figura(self, figura, dash=None):
+        if dash==None:
+            dash=self.obter_dash(figura)
         self.controlador.view_canvas.desenhar_rabisco(figura.pontos, fill=figura.fill, width=figura.width)

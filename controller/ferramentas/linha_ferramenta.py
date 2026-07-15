@@ -26,4 +26,6 @@ class Linha_Ferramenta(Ferramenta):
     
     #Desenha a linha no canvas
     def desenhar_figura(self, figura, dash=None):
+        if dash==None:
+            dash=self.obter_dash(figura)
         self.controlador.view_canvas.desenhar_linha(figura.ini_x, figura.ini_y, figura.fim_x, figura.fim_y, fill=figura.fill, width=figura.width, dash=dash)

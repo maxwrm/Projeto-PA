@@ -18,8 +18,14 @@ class Circulo(Figuras):
     def calcular_raio(self):
         return ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
 
+    #Verifica se o ponto clicado na tela contém a figura
     def contem(self, px, py):
-        pass
+        margem = ((px - self.ini_x)**2 + (py - self.ini_y)**2)**0.5
+        return margem <= self.calcular_raio()
     
     def mover(self, dx, dy):
-        pass
+        self.ini_x += dx
+        self.fim_x += dx
+        self.ini_y += dy
+        self.fim_y += dy
+ 

@@ -26,4 +26,6 @@ class Oval_Ferramenta(Ferramenta):
 
     #Desenha o oval no canvas
     def desenhar_figura(self, figura, dash=None):
+        if dash==None:
+            dash=self.obter_dash(figura)
         self.controlador.view_canvas.desenhar_oval(figura.ini_x, figura.ini_y, figura.fim_x, figura.fim_y, fill=figura.fill, outline=figura.outline, width=figura.width, dash=dash)

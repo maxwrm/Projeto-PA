@@ -9,6 +9,7 @@ class Selecao_Ferramenta(Ferramenta) :
         self.ult_y = event.y
         self.controlador.model_desenho.limpa_selecao()
         self.controlador.model_desenho.seleciona(event.x, event.y)
+        self.controlador.model_desenho.atualizar_figura_selecionada()
         self.controlador.desenhar_todas_figuras()
 
     def mouse_arrastado(self, event):
