@@ -14,8 +14,11 @@ class Retangulo(Figuras):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y) or self.ini_x == self.fim_x or self.ini_y == self.fim_y
     
     def contem(self, px, py):
-        return self.ini_x <= px <= self.fim_x and\
-               self.ini_y <= py <= self.fim_y
+        min_x = min(self.ini_x, self.fim_x)
+        max_x = max(self.ini_x, self.fim_x) 
+        min_y = min(self.ini_y, self.fim_y)
+        max_y = max(self.ini_y, self.fim_y)
+        return min_x <= px <= max_x and min_y <= py <= max_y
 
     def mover(self, dx, dy):
         self.ini_x += dx
