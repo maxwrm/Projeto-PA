@@ -26,8 +26,9 @@ class Figuras(ABC):
     @abstractmethod
     def contem(self, px, py):
         pass
-    
+
     #Move a figura clicada
     @abstractmethod
     def mover(self, dx, dy):
         pass
+    
