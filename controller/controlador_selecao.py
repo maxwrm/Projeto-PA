@@ -26,19 +26,19 @@ class ControladorSelecao:
         root.bind("<Delete>", self.atua_com(self.desenho.apaga_selecionada))
 
     def atualiza_cor_linha(self) :
-        f = self.selecionada() 
+        f = self.desenho.selecionada() 
         if f != None :
             f.cor_borda = self.view_interface.get_cor_borda() 
             self.controller.desenhar_todas_figuras()
         
-    def atualiza_cor_preenchimento(self) :
+    def atualiza_cor_preenchimento(self):
         f = self.desenho.selecionada() 
-        if f != None :
+        if f != None:
             f.cor_preenchimento = self.view_interface.get_cor_preenchimento()
             self.controller.desenhar_todas_figuras()
 
-    def atua_com(self, atua) :
-        def ignoraEvent(event) :
+    def atua_com(self, atua):
+        def ignoraEvent(event):
             atua()
             self.controller.desenhar_todas_figuras()
         return ignoraEvent
