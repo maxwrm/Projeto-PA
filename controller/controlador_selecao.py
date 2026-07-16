@@ -28,13 +28,13 @@ class ControladorSelecao:
     def atualiza_cor_linha(self) :
         f = self.desenho.selecionada() 
         if f != None :
-            f.cor_borda = self.view_interface.get_cor_borda() 
+            f.outline = self.view_interface.get_cor_borda() 
             self.controller.desenhar_todas_figuras()
         
     def atualiza_cor_preenchimento(self):
         f = self.desenho.selecionada() 
         if f != None:
-            f.cor_preenchimento = self.view_interface.get_cor_preenchimento()
+            f.fill = self.view_interface.get_cor_preenchimento()
             self.controller.desenhar_todas_figuras()
 
     def atua_com(self, atua):
