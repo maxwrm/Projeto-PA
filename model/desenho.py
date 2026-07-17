@@ -93,7 +93,7 @@ class Desenho:
         s = self.indice_selecionada 
         if 0 <= s < len(self.figuras) - 1 :
             self.figuras[s], self.figuras[s+1] = self.figuras[s+1], self.figuras[s]
-            self.selecionada += 1
+            self.indice_selecionada += 1
 
     def apaga_selecionada(self) :
         s = self.indice_selecionada 

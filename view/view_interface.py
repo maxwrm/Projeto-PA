@@ -12,6 +12,7 @@ class ViewInterface(Tk):
         self.frame = ttk.Frame(self)
         self.frame.pack()
 
+        self.controller_selecao = None
         self.controller = None
         self.menu_arquivo = None
 
@@ -122,12 +123,14 @@ class ViewInterface(Tk):
         if cor[1]: # Se o usuário não cancelar a janela
             self.cor_preenchimento_hex = cor[1]
             self.indicador_preenchimento.config(bg=cor[1])
+            self.controller_selecao.atualiza_cor_preenchimento()
 
     def escolher_cor_borda(self):
         cor = colorchooser.askcolor(title="Escolha a cor da borda", initialcolor=self.cor_borda_hex)
         if cor[1]:
             self.cor_borda_hex = cor[1]
             self.indicador_borda.config(bg=cor[1])
+            self.controller_selecao.atualiza_cor_linha()
 
     def get_sem_cor_preenchimento(self):
         self.cor_preenchimento_hex = None
