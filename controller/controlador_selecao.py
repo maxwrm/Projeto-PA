@@ -11,6 +11,9 @@ class ControladorSelecao:
 
         root = self.view_interface
 
+        self.view_interface.botao_borda.config(command=self.escolher_e_atualizar_borda)
+        self.view_interface.botao_preenchimento.config(command=self.escolher_e_atualizar_preenchimento)
+
         root.bind("<Up>", self.atua_com(self.desenho.selecionada_para_topo))
         
         root.bind("<Down>", self.atua_com(self.desenho.selecionada_para_fundo))
@@ -25,16 +28,24 @@ class ControladorSelecao:
         
         root.bind("<Delete>", self.atua_com(self.desenho.apaga_selecionada))
 
-    def atualiza_cor_linha(self) :
-        f = self.desenho.selecionada() 
+    def escolher_e_atualizar_borda(self):
+        self.view_interface.escolher_cor_borda()
+        self.atualiza_cor_borda()
+
+    def escolher_e_atualizar_preenchimento(self):
+        self.view_interface.escolher_cor_preenchimento()
+        self.atualiza_cor_preenchimento()
+
+    def atualiza_cor_borda(self) :
+        f = self.desenho.selecionada()
         if f != None :
-            f.cor_borda = self.view_interface.get_cor_borda() 
+            f.outline = self.view_interface.get_cor_borda() 
             self.controller.desenhar_todas_figuras()
         
     def atualiza_cor_preenchimento(self):
         f = self.desenho.selecionada() 
         if f != None:
-            f.cor_preenchimento = self.view_interface.get_cor_preenchimento()
+            f.fill = self.view_interface.get_cor_preenchimento()
             self.controller.desenhar_todas_figuras()
 
     def atua_com(self, atua):
