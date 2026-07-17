@@ -2,7 +2,7 @@ from .figuras import Figuras
 from model.geometria import Geometria
 
 class Triangulo_Reto(Figuras):
-    def __init__(self, event, fill="black", outline="black", width=1):
+    def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
 
     def atualizar_coordenadas(self, event):

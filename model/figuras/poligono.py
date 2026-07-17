@@ -1,17 +1,19 @@
 from .figuras import Figuras
 from model.geometria import Geometria
 
-
 class Poligono(Figuras):
-    def __init__(self, event, fill="black", outline="black", width=1):
+    def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
         self.pontos = [(event.x, event.y)]
     
     def atualizar_coordenadas(self, event):
-        if len(self.pontos) >= 2 and Geometria.tres_pontos_alinhados(self.pontos[-2], self.pontos[-1], (event.x, event.y)) :
-            self.pontos[-1] = (event.x, event.y)
+        pass
+
+    def adiciona_ponto(self, x, y) :
+        if len(self.pontos) >= 2 and Geometria.tres_pontos_alinhados(self.pontos[-2], self.pontos[-1], (x, y)) :
+            self.pontos[-1] = (x, y)
         else :
-            self.pontos.append((event.x,event.y))
+            self.pontos.append((x, y))
 
     def incompleta(self):
         return len(self.pontos) <= 2

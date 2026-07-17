@@ -14,7 +14,7 @@ class ViewCanvas:
         self.canvas.bind("<ButtonPress-1>", self.clique_mouse)
         self.canvas.bind("<B1-Motion>", self.arrastar_mouse)
         self.canvas.bind("<ButtonRelease-1>", self.soltar_mouse)
-
+        self.canvas.bind("<Double-Button-1>", self.mouse_clicado_2)
     #Limpa o canvas
     def limpar_canvas(self):
         self.canvas.delete('all')
@@ -35,8 +35,8 @@ class ViewCanvas:
     def desenhar_triangulo(self, A, B, C, fill, outline, width, dash=None):
         self. canvas.create_polygon(A, B, C, fill=fill, outline=outline, width=width, dash=dash)
 
-    def desenhar_poligono(self, pontos, fill, width, dash=None):
-        self.canvas.create_polygon(pontos, fill=fill, width=width, dash=dash)
+    def desenhar_poligono(self, pontos, fill, outline, width, dash=None):
+        self.canvas.create_polygon(pontos, fill=fill, outline=outline, width=width, dash=dash)
 
     
     def clique_mouse(self, event):
@@ -47,3 +47,6 @@ class ViewCanvas:
 
     def soltar_mouse(self, event):
         self.controller.finalizar_figura(event)
+    
+    def mouse_clicado_2(self, event) :
+        self.controller.mouse_clicado_2(event)

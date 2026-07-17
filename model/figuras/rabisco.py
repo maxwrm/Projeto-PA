@@ -2,7 +2,7 @@ from .figuras import Figuras
 from model.geometria import Geometria
 
 class Rabisco(Figuras):
-    def __init__(self, event, fill="black", outline="black", width=1):
+    def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
         self.pontos = [(event.x, event.y)]
     
