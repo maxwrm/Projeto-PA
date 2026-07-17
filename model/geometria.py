@@ -45,3 +45,21 @@ class Geometria:
         
         # Use a small tolerance for floating-point numbers
         return abs(cross_product) < 1e-12
+    
+    @staticmethod
+    def ponto_no_triangulo(A, B, C, P):
+        """Verifica se existe um triângulo no ponto"""
+        
+        def area(p1, p2, p3):
+            return abs(
+                (p1[0]*(p2[1]-p3[1]) +
+                 p2[0]*(p3[1]-p1[1]) +
+                 p3[0]*(p1[1]-p2[1])) / 2
+            )
+        area_total = area(A, B, C)
+
+        a1 = area(P, B, C)
+        a2 = area(A, P, C)
+        a3 = area(A, B, P)
+
+        return abs(area_total - (a1 + a2 + a3)) < 1e-6

@@ -14,7 +14,7 @@ class Rabisco_Ferramenta(Ferramenta):
 
         self.figura_nova.atualizar_coordenadas(event)
         self.controlador.desenhar_todas_figuras()
-        self.desenhar_figura(self.figura_nova, dash=(4, 2))
+        self.desenhar_figura(self.figura_nova)
 
     #Finaliza a figura em construção, adicionando-a ao modelo se estiver completa
     def mouse_solto(self, event):
@@ -28,4 +28,4 @@ class Rabisco_Ferramenta(Ferramenta):
     def desenhar_figura(self, figura, dash=None):
         if dash==None:
             dash=self.obter_dash(figura)
-        self.controlador.view_canvas.desenhar_rabisco(figura.pontos, fill=figura.fill, width=figura.width)
+        self.controlador.view_canvas.desenhar_rabisco(figura.pontos, fill=figura.fill, width=figura.width, dash=dash)

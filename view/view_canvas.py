@@ -29,8 +29,11 @@ class ViewCanvas:
     def desenhar_oval(self, ini_x, ini_y, fim_x, fim_y, fill, outline, width, dash=None):
         self.canvas.create_oval(ini_x, ini_y, fim_x, fim_y, fill=fill, outline=outline, width=width, dash=dash)
 
-    def desenhar_rabisco(self, pontos, fill, width):
-        self.canvas.create_line(pontos, fill=fill, width=width)
+    def desenhar_rabisco(self, pontos, fill, width, dash=None):
+        self.canvas.create_line(pontos, fill=fill, width=width, dash=dash)
+
+    def desenhar_triangulo(self, A, B, C, fill, outline, width, dash=None):
+        self. canvas.create_polygon(A, B, C, fill=fill, outline=outline, width=width, dash=dash)
 
     def desenhar_poligono(self, pontos, fill, width, dash=None):
         self.canvas.create_polygon(pontos, fill=fill, width=width, dash=dash)

@@ -21,7 +21,6 @@ canvas.controller = controller
 interface.controller = controller
 interface.menu_arquivo = menu_arquivo
 menu_arquivo.controller = controller
-interface.controller_selecao = controlador_selecao
 
 #permite o codigo se repetir
 interface.mainloop()

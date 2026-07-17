@@ -1,7 +1,7 @@
 from .ferramenta import Ferramenta
 from model.figuras import Triangulo_Reto
 
-class Triangulo_Ferramenta(Ferramenta):
+class Triangulo_Reto_Ferramenta(Ferramenta):
 
     def mouse_pressionado(self, event):
         self.figura_nova = Triangulo_Reto(event, fill=self.controlador.view_interface.get_cor_preenchimento(), outline=self.controlador.view_interface.get_cor_borda(), width=self.controlador.view_interface.get_espessura())
@@ -22,4 +22,7 @@ class Triangulo_Ferramenta(Ferramenta):
         self.figura_nova = None
     
     def desenhar_figura(self, figura, dash=None):
-        self.controlador.view_canvas.desenhar_poligono(figura.pontos, fill=figura.fill, width=figura.width, dash=dash)
+        if dash==None:
+            dash=self.obter_dash(figura)
+        A, B, C = figura.calcular_vertices()
+        self.controlador.view_canvas.desenhar_triangulo(A, B, C, fill=figura.fill, width=figura.width, outline=figura.outline, dash=dash)
