@@ -131,7 +131,7 @@ class ViewInterface(Tk):
             self.indicador_borda.config(bg=cor[1])
 
     def get_sem_cor_preenchimento(self):
-        self.cor_preenchimento_hex = None
+        self.cor_preenchimento_hex = ""
 
     def get_cor_preenchimento(self):
         return self.cor_preenchimento_hex
