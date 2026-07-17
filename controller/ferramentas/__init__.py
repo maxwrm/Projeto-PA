@@ -7,5 +7,5 @@ from .circulo_ferramenta import Circulo_Ferramenta
 from .rabisco_ferramenta import Rabisco_Ferramenta
 from .borracha_ferramenta import Borracha_Ferramenta
 from .poligono_ferramenta import Poligono_Ferramenta
-from .triangulo_ferramenta import Triangulo_Ferramenta
+from .triangulo_reto_ferramenta import Triangulo_Reto_Ferramenta
 from .selecao_ferramenta import Selecao_Ferramenta

@@ -59,7 +59,7 @@ class Desenho:
     
     # Copiar/Colar
     def copiar_selecionada(self) :
-        self.buffer = copy.deepcopy(self.indice_selecionada())
+        self.buffer = copy.deepcopy(self.selecionada())
 
     def colar(self) :
         if self.buffer != None :

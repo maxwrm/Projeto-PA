@@ -22,7 +22,7 @@ class Controlador:
             "Rabisco": Rabisco_Ferramenta(self),
             "Borracha": Borracha_Ferramenta(self),
             "Poligono": Poligono_Ferramenta(self),
-            "Triangulo_Reto": Triangulo_Ferramenta(self),
+            "Triangulo_Reto": Triangulo_Reto_Ferramenta(self),
             "Selecao": Selecao_Ferramenta(self)
         }
 

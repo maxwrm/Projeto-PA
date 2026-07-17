@@ -7,4 +7,4 @@ from .quadrado import Quadrado
 from .borracha import Borracha
 from .poligono import Poligono
 from .figuras import Figuras
-from .triangulo import Triangulo_Reto
+from .triangulo_reto import Triangulo_Reto
