@@ -4,7 +4,7 @@ class Ferramenta(ABC):
 
     def __init__(self, controlador):
         self.controlador = controlador
-        self.figura_nova = None
+        self._figura_nova = None
 
     #Cria a figura correspondente ao pressionar o mouse, abstractmethod, deve ser implementado nas classes filhas
     @abstractmethod

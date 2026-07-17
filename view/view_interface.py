@@ -20,25 +20,25 @@ class ViewInterface(Tk):
         self.paddings = {'padx': 5, 'pady': 5}
 
         #Cores padrões
-        self.cor_background_hex = "#FFFFFF"
-        self.cor_preenchimento_hex = "#000000"
-        self.cor_borda_hex = "#000000"
+        self._cor_background_hex = "#FFFFFF"
+        self._cor_preenchimento_hex = "#000000"
+        self._cor_borda_hex = "#000000"
 
         #Dicionário das figuras
-        self.figuras_dicionario = {"/":"Linha", "○":"Circulo", "□":"Quadrado", "▭":"Retangulo", "⬭":"Oval", "◺": "Triangulo_Reto", "▨": "Poligono"}
+        self._figuras_dicionario = {"/":"Linha", "○":"Circulo", "□":"Quadrado", "▭":"Retangulo", "⬭":"Oval", "◺": "Triangulo_Reto", "▨": "Poligono"}
         
         #frame das figuras
         self.frame_figuras = ttk.Frame(master=self.frame, borderwidth=5, relief="sunken", height=10)
         self.frame_figuras.grid(column=1, row=0, rowspan=2, sticky="ns", **self.paddings)
 
         #Guarda o tipo de figura selecionada
-        self.tipo_figura_var = StringVar(value="Rabisco")
+        self._tipo_figura_var = StringVar(value="Rabisco")
 
         #botoes das figuras
         col, ro = 0, 1
-        for simbolo, nome_figura in self.figuras_dicionario.items():
+        for simbolo, nome_figura in self._figuras_dicionario.items():
 
-            radiobutton_figura = Radiobutton(master=self.frame_figuras, text=simbolo, indicatoron=False, font=("", 15), variable=self.tipo_figura_var, value=nome_figura, height=1, width=2, relief="raised", borderwidth=3)
+            radiobutton_figura = Radiobutton(master=self.frame_figuras, text=simbolo, indicatoron=False, font=("", 15), variable=self._tipo_figura_var, value=nome_figura, height=1, width=2, relief="raised", borderwidth=3)
             radiobutton_figura.grid(column=col, row=ro, padx=2, pady=2)
             if col > 0 and col % 4 == 0: 
                 ro+=1
@@ -61,14 +61,14 @@ class ViewInterface(Tk):
         self.botao_preenchimento = ttk.Button(master=self.frame_cores, text='Cor Preenchimento/Linha', command=self.escolher_cor_preenchimento)
         self.botao_preenchimento.grid(column=0, row=1, sticky=W, **self.paddings)
 
-        self.indicador_preenchimento = Label(master=self.frame_cores, width=3, height=1, bg=self.cor_preenchimento_hex)
+        self.indicador_preenchimento = Label(master=self.frame_cores, width=3, height=1, bg=self._cor_preenchimento_hex)
         self.indicador_preenchimento.grid(column=1, row=1, sticky=W, **self.paddings)
 
         # Botão e Indicador de Borda
         self.botao_borda = ttk.Button(master=self.frame_cores, text='Cor Borda', command=self.escolher_cor_borda)
         self.botao_borda.grid(column=0, row=2, sticky=W, **self.paddings)
         
-        self.indicador_borda = Label(master=self.frame_cores, width=3, height=1, bg=self.cor_borda_hex)
+        self.indicador_borda = Label(master=self.frame_cores, width=3, height=1, bg=self._cor_borda_hex)
         self.indicador_borda.grid(column=1, row=2, sticky=W, **self.paddings)
 
         #Label de cores que fica abaixo dos botões de selecionar
@@ -80,22 +80,22 @@ class ViewInterface(Tk):
         self.frame_ferramentas.grid(column=0, row=0, rowspan=2, sticky="ns", **self.paddings)
 
         #botão de pincel que ficará em ferramentas
-        self.radiobutton_pincel = Radiobutton(master=self.frame_ferramentas, text="🖌", font=("", 15), value="Rabisco", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
+        self.radiobutton_pincel = Radiobutton(master=self.frame_ferramentas, text="🖌", font=("", 15), value="Rabisco", variable=self._tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
         self.radiobutton_pincel.grid(column=0, row=1, **self.paddings)
 
         #botão de borracha que ficará em ferramentas
-        self.radiobutton_borracha = Radiobutton(master=self.frame_ferramentas, text="⌫", font=("", 15), value="Borracha", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
+        self.radiobutton_borracha = Radiobutton(master=self.frame_ferramentas, text="⌫", font=("", 15), value="Borracha", variable=self._tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
         self.radiobutton_borracha.grid(column=1, row=1, **self.paddings)
 
         #botao de selecionar que ficará em ferramentas
-        self.radiobutton_selecao = Radiobutton(master=self.frame_ferramentas, text="⇖", font=("", 15), value="Selecao", variable=self.tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
+        self.radiobutton_selecao = Radiobutton(master=self.frame_ferramentas, text="⇖", font=("", 15), value="Selecao", variable=self._tipo_figura_var, height=1, width=2, relief="raised", borderwidth=3, indicatoron=False)
         self.radiobutton_selecao.grid(column=0, row=2, **self.paddings)
         
         #variavel da espessura
-        self.espessura_var = IntVar(value=1)
+        self._espessura_var = IntVar(value=1)
 
         #Escala de espessura do traço
-        self.escala_espessura = Scale(master=self.frame_ferramentas, from_=1, to=50, orient="vertical", label="Pincel", variable=self.espessura_var)
+        self.escala_espessura = Scale(master=self.frame_ferramentas, from_=1, to=50, orient="vertical", label="Pincel", variable=self._espessura_var)
         self.escala_espessura.grid(column=2, row=1, rowspan=2, sticky="ens", **self.paddings)
 
         #label de ferramentas
@@ -119,34 +119,34 @@ class ViewInterface(Tk):
         botao_alternar_menu.grid(column=6,row=0, sticky=N, **self.paddings)
 
     def escolher_cor_preenchimento(self):
-        cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self.cor_preenchimento_hex)
+        cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self._cor_preenchimento_hex)
         if cor[1]: # Se o usuário não cancelar a janela
-            self.cor_preenchimento_hex = cor[1]
+            self._cor_preenchimento_hex = cor[1]
             self.indicador_preenchimento.config(bg=cor[1])
 
     def escolher_cor_borda(self):
-        cor = colorchooser.askcolor(title="Escolha a cor da borda", initialcolor=self.cor_borda_hex)
+        cor = colorchooser.askcolor(title="Escolha a cor da borda", initialcolor=self._cor_borda_hex)
         if cor[1]:
-            self.cor_borda_hex = cor[1]
+            self._cor_borda_hex = cor[1]
             self.indicador_borda.config(bg=cor[1])
 
     def get_sem_cor_preenchimento(self):
-        self.cor_preenchimento_hex = ""
+        self._cor_preenchimento_hex = ""
 
     def get_cor_preenchimento(self):
-        return self.cor_preenchimento_hex
+        return self._cor_preenchimento_hex
 
     def get_cor_borda(self):
-        return self.cor_borda_hex
+        return self._cor_borda_hex
     
     def get_tipo_figura(self):
-        return self.tipo_figura_var.get()
+        return self._tipo_figura_var.get()
     
     def get_espessura(self):
-        return self.espessura_var.get()
+        return self._espessura_var.get()
     
     def get_cor_background(self):
-        return self.cor_background_hex
+        return self._cor_background_hex
 
     def get_paddings(self):
         return self.paddings

@@ -51,6 +51,14 @@ class Controlador:
         self.ferramenta_atual.mouse_solto(event)
         self.ferramenta_atual = None
 
+    #<Double-Button-1>
+    def mouse_clicado_2(self, event):
+        if self.ferramenta_atual == None:
+            return
+        
+        self.ferramenta_atual.dobbleclick(event)
+        self.ferramenta_atual = None
+
     #Redesenha, do zero, todas as figuras já salvas no model_desenho
     def desenhar_todas_figuras(self):
         self.view_canvas.limpar_canvas()

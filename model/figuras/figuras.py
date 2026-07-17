@@ -10,7 +10,7 @@ class Figuras(ABC):
         self.width = width
         self.outline = outline
         self.selecionada = False
-        self.figuras = []
+        self._figuras = []
 
     #Atualiza as coordenadas do ponto final da figura, abstractmethod, deve ser implementado nas classes filhas
     @abstractmethod
