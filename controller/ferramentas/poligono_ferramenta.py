@@ -10,6 +10,7 @@ class Poligono_Ferramenta(Ferramenta):
             self._figura_nova = self._figura_nova = Poligono(event, fill=self.controlador.view_interface.get_cor_preenchimento(), outline=self.controlador.view_interface.get_cor_borda(), width=self.controlador.view_interface.get_espessura())
         else :
             self._figura_nova.atualizar_coordenadas(event)
+            self.desenhar_figura(self._figura_nova, dash=(4, 2))
         if len(self._figura_nova.pontos) > 1:
             self.controlador.desenhar_todas_figuras()
 
@@ -23,19 +24,16 @@ class Poligono_Ferramenta(Ferramenta):
             pts.pop()
 
     def mouse_solto(self, event):
-        if self._figura_nova is not None and not self._figura_nova.incompleta():
-            self.controlador.model_desenho.adicionar_figura(self._figura_nova)
+        self.mouse_arrastado(event)
 
-        self.controlador.desenhar_todas_figuras()
-        self._figura_nova = None
-
-    def dobleclick(self, event):
+    def doubleclick(self, event):
         if not self._figura_nova.incompleta():
             self.controlador.model_desenho.adicionar_figura(self._figura_nova)
             self.controlador.desenhar_todas_figuras()
         self._figura_nova = None        
         self.controlador.desenhar_todas_figuras()
-
+        self.controlador.view_canvas.desenhar_poligono(self._figura_nova.pontos, fill=self._figura_nova.fill, width=self._figura_nova.width, outline=self._figura_nova.outline, dash=dash, **kwargs)
+        self._figura_nova = None
 
     def desenhar_figura(self, figura, dash=None, **kwargs):
         if dash==None:

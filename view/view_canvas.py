@@ -15,6 +15,7 @@ class ViewCanvas:
         self.canvas.bind("<B1-Motion>", self.arrastar_mouse)
         self.canvas.bind("<ButtonRelease-1>", self.soltar_mouse)
         self.canvas.bind("<Double-Button-1>", self.mouse_clicado_2)
+        
     #Limpa o canvas
     def limpar_canvas(self):
         self.canvas.delete('all')
