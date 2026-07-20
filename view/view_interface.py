@@ -92,7 +92,7 @@ class ViewInterface(Tk):
         self.radiobutton_selecao.grid(column=0, row=2, **self.paddings)
         
         #variavel da espessura
-        self._espessura_var = IntVar(value=5)
+        self._espessura_var = IntVar(value=3)
 
         #Escala de espessura do traço
         self.escala_espessura = Scale(master=self.frame_ferramentas, from_=1, to=50, orient="vertical", label="Pincel", variable=self._espessura_var)

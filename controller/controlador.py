@@ -53,10 +53,17 @@ class Controlador:
 
     #<Double-Button-1>
     def mouse_clicado_2(self, event):
-        if self.ferramenta_atual == None:
+        # Como o <ButtonRelease-1> limpa a ferramenta_atual, precisamos resgatá-la
+        tipo = self.view_interface.get_tipo_figura()
+        ferramenta = self.ferramentas.get(tipo)
+
+        if ferramenta == None:
             return
         
-        self.ferramenta_atual.dobbleclick(event)
+        # Verifica se a ferramenta possui a função doubleclick e a executa
+        if hasattr(ferramenta, 'doubleclick'):
+            ferramenta.doubleclick(event)
+            
         self.ferramenta_atual = None
 
     #Redesenha, do zero, todas as figuras já salvas no model_desenho
