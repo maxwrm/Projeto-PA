@@ -2,6 +2,11 @@ from abc import ABC, abstractmethod
 
 class Ferramenta(ABC):
 
+    """
+    Classe abstrata que representa uma ferramenta de desenho. 
+    Cada ferramenta é responsável por criar e manipular uma figura específica no canvas. 
+    """
+
     def __init__(self, controlador):
         self.controlador = controlador
         self._figura_nova = None
@@ -26,6 +31,7 @@ class Ferramenta(ABC):
     def desenhar_figura(self, figura, dash=None):
         pass
 
+    #Obtem o pontilhado de cada figura
     def obter_dash(self, figura):
         if figura.selecionada:
             return (4, 2)

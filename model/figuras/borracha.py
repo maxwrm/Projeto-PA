@@ -2,6 +2,11 @@ from .figuras import Figuras
 from model.geometria import Geometria
 
 class Borracha(Figuras):
+
+    """
+    Precisa ser revisto...
+    """
+    
     def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
         self.pontos = [(event.x, event.y)]

@@ -2,6 +2,11 @@ from .ferramenta import Ferramenta
 from model.figuras import Circulo
 
 class Circulo_Ferramenta(Ferramenta):
+
+    """
+    Classe responsável por controlar todos os movimento e dados, executados e obtidos, sobre o circulo, 
+    enquanto o usuário interage com a interface e canvas.
+    """
     
     #Cria um novo Circulo a partir do ponto onde o mouse foi pressionado
     def mouse_pressionado(self, event):

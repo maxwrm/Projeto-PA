@@ -2,19 +2,28 @@ from .figuras import Figuras
 from model.geometria import Geometria
 
 class Poligono(Figuras):
+
+    """
+    Classe modelo da figura Poligono, responsável por servir como modelo do que seria um Poligono, 
+    armazenar os dados e coordenadas do Poligono, bem como realizar cálculos geométricos sobre o mesmo.
+    """
+    
     def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
         self.pontos = [(event.x, event.y)]
     
+    #Adiciona todos os pontos para a construção do poligono.
     def atualizar_coordenadas(self, event):
         if len(self.pontos) >= 2 and Geometria.tres_pontos_alinhados(self.pontos[-2], self.pontos[-1], (event.x, event.y)) :
             self.pontos[-1] = (event.x, event.y)
         else :
             self.pontos.append((event.x, event.y))
 
+    #Verifica se o poligono está completo
     def incompleta(self):
         return len(self.pontos) <= 2
 
+    #Verifica se o ponto clicado na tela contém a figura
     def contem(self, px, py):
         dentro = False
         n = len(self.pontos)
@@ -45,7 +54,7 @@ class Poligono(Figuras):
             
         return dentro
 
-    
+    #Mover a figura, alterando suas coordenadas
     def mover(self, dx, dy):
         for i in range(len(self.pontos)) :
             (x, y) = self.pontos[i]

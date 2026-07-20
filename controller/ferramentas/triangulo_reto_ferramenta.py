@@ -3,6 +3,11 @@ from model.figuras import Triangulo_Reto
 
 class Triangulo_Reto_Ferramenta(Ferramenta):
 
+    """
+    Classe responsável por controlar todos os movimento e dados, executados e obtidos, sobre o triangulo reto, 
+    enquanto o usuário interage com a interface e canvas.
+    """
+
     def mouse_pressionado(self, event):
         self._figura_nova = Triangulo_Reto(event, fill=self.controlador.view_interface.get_cor_preenchimento(), outline=self.controlador.view_interface.get_cor_borda(), width=self.controlador.view_interface.get_espessura())
     

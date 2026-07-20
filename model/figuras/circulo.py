@@ -2,6 +2,12 @@ from .figuras import Figuras
 from model.geometria import Geometria
 
 class Circulo(Figuras):
+
+    """
+    Classe modelo da figura Circulo, responsável por servir como modelo do que seria um Circulo, 
+    armazenar os dados e coordenadas do Circulo, bem como realizar cálculos geométricos sobre o mesmo.
+    """
+
     def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
     
@@ -23,6 +29,7 @@ class Circulo(Figuras):
         margem = ((px - self.ini_x)**2 + (py - self.ini_y)**2)**0.5
         return margem <= self.calcular_raio()
     
+    #Mover a figura, alterando suas coordenadas
     def mover(self, dx, dy):
         self.ini_x += dx
         self.fim_x += dx

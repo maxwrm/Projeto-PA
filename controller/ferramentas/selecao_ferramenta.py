@@ -1,6 +1,12 @@
 from .ferramenta import Ferramenta
 
 class Selecao_Ferramenta(Ferramenta) :
+
+    """
+    Classe responsável por controlar todos os movimento e dados, executados e obtidos, 
+    sobre a seleção de cada objeto no canvas, enquanto o usuário interage com a interface e canvas.
+    """
+
     ult_x = 0
     ult_y = 0
 

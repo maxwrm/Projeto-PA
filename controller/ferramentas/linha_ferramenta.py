@@ -3,6 +3,11 @@ from model.figuras import Linha
 
 class Linha_Ferramenta(Ferramenta):
 
+    """
+    Classe responsável por controlar todos os movimento e dados, executados e obtidos, sobre a linha, 
+    enquanto o usuário interage com a interface e canvas.
+    """
+
     #Cria uma nova Linha a partir do ponto onde o mouse foi pressionado
     def mouse_pressionado(self, event):
         self._figura_nova = Linha(event, fill=self.controlador.view_interface.get_cor_preenchimento(), outline=self.controlador.view_interface.get_cor_borda(), width=self.controlador.view_interface.get_espessura())

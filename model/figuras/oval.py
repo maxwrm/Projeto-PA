@@ -1,6 +1,12 @@
 from .figuras import Figuras
 
 class Oval(Figuras):
+
+    """
+    Classe modelo da figura Oval, responsável por servir como modelo do que seria um Oval, 
+    armazenar os dados e coordenadas do Oval, bem como realizar cálculos geométricos sobre o mesmo.
+    """
+
     def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
     
@@ -27,7 +33,7 @@ class Oval(Figuras):
         margem = 0.1
         return valor <= 1 + margem
     
-    #Move a figura na tela
+    #Mover a figura, alterando suas coordenadas
     def mover(self, dx, dy):
         self.ini_x += dx
         self.fim_x += dx

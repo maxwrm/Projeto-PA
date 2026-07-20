@@ -1,6 +1,12 @@
 from .figuras import Figuras
 
 class Quadrado(Figuras):
+
+    """
+    Classe modelo da figura Quadrado, responsável por servir como modelo do que seria um Quadrado, 
+    armazenar os dados e coordenadas do Quadrado, bem como realizar cálculos geométricos sobre o mesmo.
+    """
+
     def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
     
@@ -17,9 +23,11 @@ class Quadrado(Figuras):
     def calcular_diagonal(self):
         return ((self.fim_x - self.ini_x) ** 2 + (self.fim_y - self.ini_y) ** 2) ** 0.5
     
+    #Calcula do lado do quadrado
     def calcular_lado(self):
         return max(abs(self.fim_x - self.ini_x), abs(self.fim_y - self.ini_y))
-
+    
+    #Calcula a coordenada final do quadrado
     def calcular_ponto_final(self):
         lado = self.calcular_lado()
         
@@ -35,6 +43,7 @@ class Quadrado(Figuras):
 
         return x, y
 
+    #Verifica se o ponto clicado na tela contém a figura
     def contem(self, px, py):
         margem = max(3, self.width)
         fim_x, fim_y = self.calcular_ponto_final()
@@ -44,6 +53,7 @@ class Quadrado(Figuras):
         max_y = max(self.ini_y, fim_y) + margem
         return min_x <= px <= max_x and min_y <= py <= max_y
     
+    #Mover a figura, alterando suas coordenadas
     def mover(self, dx, dy):
         self.ini_x += dx
         self.fim_x += dx

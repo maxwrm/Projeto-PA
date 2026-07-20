@@ -1,6 +1,12 @@
 from .figuras import Figuras
 
 class Retangulo(Figuras):
+
+    """
+    Classe modelo da figura Retângulo, responsável por servir como modelo do que seria um Retângulo, 
+    armazenar os dados e coordenadas do Retângulo, bem como realizar cálculos geométricos sobre o mesmo.
+    """
+
     def __init__(self, event, fill, outline, width=1):
         super().__init__(event, fill, outline, width)
     
@@ -13,6 +19,7 @@ class Retangulo(Figuras):
     def incompleta(self):
         return (self.ini_x, self.ini_y) == (self.fim_x, self.fim_y) or self.ini_x == self.fim_x or self.ini_y == self.fim_y
     
+    #Verifica se o ponto clicado na tela contém a figura
     def contem(self, px, py):
         min_x = min(self.ini_x, self.fim_x)
         max_x = max(self.ini_x, self.fim_x) 
@@ -20,6 +27,7 @@ class Retangulo(Figuras):
         max_y = max(self.ini_y, self.fim_y)
         return min_x <= px <= max_x and min_y <= py <= max_y
 
+    #Mover a figura, alterando suas coordenadas
     def mover(self, dx, dy):
         self.ini_x += dx
         self.ini_y += dy

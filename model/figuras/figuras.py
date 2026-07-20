@@ -1,6 +1,12 @@
 from abc import ABC, abstractmethod
 
 class Figuras(ABC):
+
+    """
+    Classe abstrata que representa um modelo das figuras. 
+    Cada figura é responsável por se redefinir e manipular seus dados e calculos. 
+    """
+
     def __init__(self, event, fill="black", outline="black", width=1):
         self.ini_x = event.x
         self.ini_y = event.y

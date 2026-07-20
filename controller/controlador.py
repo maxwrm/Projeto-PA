@@ -5,6 +5,12 @@ from view import *
 from .ferramentas import *
 
 class Controlador:
+
+    """
+    Responsável por fazer o controle entre o'que é obtido do usuário na interface ou canvas, envidando esses dados ao model (modelo de cada figura), 
+    e o'que é produzido de acordo com o dado obtido no model.
+    """
+
     def __init__(self, model_desenho:Desenho, model_persistencia:Persistencia, view_canvas: ViewCanvas, view_interface: ViewInterface, view_menu_arquivo:ViewMenuArquivo):
         self.model_desenho = model_desenho
         self.model_persistencia = model_persistencia
@@ -27,7 +33,8 @@ class Controlador:
         }
 
         self.ferramenta_atual = None
-
+    
+    #iniciar a criação de uma figura, a partir do ponto onde o mouse foi pressionado 
     def iniciar_figura(self, event):
         tipo = self.view_interface.get_tipo_figura()
         self.ferramenta_atual = self.ferramentas.get(tipo)
@@ -38,12 +45,14 @@ class Controlador:
         self.mudar_ferramenta(self.ferramenta_atual)
         self.ferramenta_atual.mouse_pressionado(event)
 
+    #atualizar a figura em construção, enquanto o mouse é arrastado
     def atualizar_figura(self, event):
         if self.ferramenta_atual == None:
             return
 
         self.ferramenta_atual.mouse_arrastado(event)
 
+    #finalizar a criação da figura, quando o mouse é solto
     def finalizar_figura(self, event):
         if self.ferramenta_atual == None:
             return
@@ -51,7 +60,7 @@ class Controlador:
         self.ferramenta_atual.mouse_solto(event)
         self.ferramenta_atual = None
 
-    #<Double-Button-1>
+    #<Double-Button-1>, usado para finalizar a criação de figuras que necessitam de mais de 2 pontos, como o polígono
     def mouse_clicado_2(self, event):
         # Como o <ButtonRelease-1> limpa a ferramenta_atual, precisamos resgatá-la
         tipo = self.view_interface.get_tipo_figura()
@@ -73,6 +82,7 @@ class Controlador:
             ferramenta = self.ferramentas[type(figura).__name__]
             ferramenta.desenhar_figura(figura)
 
+    #Muda a ferramenta atual para a nova ferramenta escolhida, limpando a seleção de figuras no model_desenho e redesenhando todas as figuras
     def mudar_ferramenta(self, nova_ferramenta):
         self.model_desenho.limpa_selecao()
         self.ferramenta_atual = nova_ferramenta
@@ -83,14 +93,17 @@ class Controlador:
         self.model_desenho.limpar_figuras()
         self.view_canvas.limpar_canvas()
 
+    #Desfaz a última figura realizada, removendo-a do model_desenho e redesenhando todas as figuras
     def desfazer(self):
         self.model_desenho.remover_figura()
         self.desenhar_todas_figuras()
 
+    #Refaz a última figura desfeita, adicionando-a novamente ao model_desenho e redesenhando todas as figuras
     def refazer(self):
         self.model_desenho.refazer_figura()
         self.desenhar_todas_figuras()
 
+    #Salva o desenho atual, chamando a função de salvar do model_persistencia e atualizando a lista de arquivos salvos na interface
     def salvar(self, nome):
         """Salva o desenho atual"""
         figuras = self.model_desenho.get_figuras()
@@ -98,6 +111,7 @@ class Controlador:
         arquivos = self.listar_arquivos()
         self.view_menu_arquivo.atualizar_arquivos_salvos(arquivos)
     
+    #Carrega um desenho salvo, chamando a função de carregar do model_persistencia, limpando o model_desenho e adicionando as figuras carregadas ao model_desenho, e redesenhando todas as figuras
     def carregar(self, nome):
         """Carrega um desenho salvo"""
         figuras = self.model_persistencia.carregar(nome)
@@ -106,10 +120,12 @@ class Controlador:
             self.model_desenho.adicionar_figura(figura)
         self.desenhar_todas_figuras()
     
+    #Retorna uma lista com os nomes dos arquivos salvos, chamando a função de listar_salvos do model_persistencia, similar ao get()
     def listar_arquivos(self):
         """Retorna lista de arquivos salvos"""
         return self.model_persistencia.listar_salvos()
     
+    #Atualiza a lista de arquivos salvos na interface, chamando a função listar_arquivos() e atualizando a view_menu_arquivo com a lista obtida
     def atualiza_lista(self):
         arquivos = self.listar_arquivos()
         self.view_menu_arquivo.atualizar_arquivos_salvos(arquivos)

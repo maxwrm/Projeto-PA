@@ -3,6 +3,11 @@ from model.figuras import Poligono
 
 class Poligono_Ferramenta(Ferramenta):
 
+    """
+    Classe responsável por controlar todos os movimento e dados, executados e obtidos, sobre o poligono, 
+    enquanto o usuário interage com a interface e canvas.
+    """
+
     #Cria um novo Poligono a partir do ponto onde o mouse foi pressionado
     def mouse_pressionado(self, event):
         if self._figura_nova is None:

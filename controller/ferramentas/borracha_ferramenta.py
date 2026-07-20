@@ -3,6 +3,10 @@ from model.figuras import Borracha
 
 class Borracha_Ferramenta(Ferramenta):
 
+    """
+    Precisa ser revisto...
+    """
+
     #Cria um novo traço da borracha a partir do ponto onde o mouse foi pressionado
     def mouse_pressionado(self, event):
         self._figura_nova = Borracha(event, fill=self.controlador.view_interface.get_cor_background(), outline=self.controlador.view_interface.get_cor_borda(), width=self.controlador.view_interface.get_espessura())
