@@ -3,6 +3,11 @@ import math
 
 class Geometria:
 
+    """
+    Classe com métodos estáticos para cálculos geométricos.
+    """
+
+    # Calcula a distância entre um ponto (px, py) e um segmento de reta definido pelos pontos (x1, y1) e (x2, y2)
     @staticmethod
     def distancia(x1, y1, x2, y2, px, py) :
         # Vetor direção do segmento (AB)
@@ -32,6 +37,7 @@ class Geometria:
         
         return math.sqrt((px - ponto_proximo_x)**2 + (py - ponto_proximo_y)**2)
     
+    # Verifica se três pontos estão alinhados
     @staticmethod
     def tres_pontos_alinhados(p1, p2, p3):
         """Verifica se 3 pontos 2d estão alinhados em uma linha reta, cada ponto deve ser uma tupla ou lista de (x,y)"""
@@ -48,7 +54,7 @@ class Geometria:
     
     @staticmethod
     def ponto_no_triangulo(A, B, C, P):
-        """Verifica se existe um triângulo no ponto"""
+        """Verifica se o ponto P está dentro do triângulo formado pelos pontos A, B e C"""
         
         def area(p1, p2, p3):
             return abs(

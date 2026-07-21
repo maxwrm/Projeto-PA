@@ -2,6 +2,12 @@ from tkinter import *
 from model.figuras import *
 
 class ViewCanvas:
+
+    """
+    Classe responsável por gerenciar a área de desenho (canvas) da interface gráfica. 
+    Ela lida com a criação do canvas, o desenho de figuras e a captura de eventos do mouse.
+    """
+
     def __init__(self, interface):
         self.controller = None
         self.interface = interface

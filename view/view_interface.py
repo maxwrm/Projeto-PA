@@ -3,6 +3,12 @@ from tkinter import ttk
 from tkinter import colorchooser
 
 class ViewInterface(Tk):
+
+    """
+    Classe responsável por gerenciar a interface gráfica do usuário.
+    lidando com a criação da janela principal, a configuração de widgets e a interação com o usuário.
+    """
+
     def __init__(self):
         super().__init__()
         #Titulo e tamanho da janela
@@ -118,12 +124,14 @@ class ViewInterface(Tk):
         botao_alternar_menu = ttk.Button(self.frame, text="💾", command=self.botao_alternar_menu, width=3)
         botao_alternar_menu.grid(column=6,row=0, sticky=N, **self.paddings)
 
+    #Escolhe a cor de preenchimento/linha, atualizando o indicador de cor e a variável correspondente
     def escolher_cor_preenchimento(self):
         cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self._cor_preenchimento_hex)
         if cor[1]: # Se o usuário não cancelar a janela
             self._cor_preenchimento_hex = cor[1]
             self.indicador_preenchimento.config(bg=cor[1])
 
+    #Escolhe a cor de borda, atualizando o indicador de cor e a variável correspondente
     def escolher_cor_borda(self):
         cor = colorchooser.askcolor(title="Escolha a cor da borda", initialcolor=self._cor_borda_hex)
         if cor[1]:
@@ -151,6 +159,7 @@ class ViewInterface(Tk):
     def get_paddings(self):
         return self.paddings
 
+    #Métodos para os botões de limpar, desfazer, refazer e alternar menu, que chamam os métodos correspondentes no controller
     def botao_limpar(self):
         if self.controller:
             self.controller.limpar()
@@ -164,4 +173,4 @@ class ViewInterface(Tk):
             self.controller.refazer()
     
     def botao_alternar_menu(self):
-        self.menu_arquivo.alternar()
+        self.menu_arquivo.alternar_menu()
