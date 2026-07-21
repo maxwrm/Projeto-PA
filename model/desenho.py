@@ -108,7 +108,7 @@ class Desenho:
     def apaga_selecionada(self) :
         s = self.indice_selecionada 
         if s != -1 :
-            self._figuras.pop(s)
+            self._figuras_removidas.append(self._figuras.pop(s))
             self.indice_selecionada = -1
 
     def get_figuras(self):

@@ -10,6 +10,7 @@ class Selecao_Ferramenta(Ferramenta) :
     ult_x = 0
     ult_y = 0
 
+    #Seleciona uma figura
     def mouse_pressionado(self, event):
         self.ult_x = event.x
         self.ult_y = event.y
@@ -18,6 +19,7 @@ class Selecao_Ferramenta(Ferramenta) :
         self.controlador.model_desenho.atualizar_figura_selecionada()
         self.controlador.desenhar_todas_figuras()
 
+    #Faz movimentos com a figura selecionada
     def mouse_arrastado(self, event):
         figSel = self.controlador.model_desenho.selecionada()
         if figSel :         

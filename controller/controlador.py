@@ -42,7 +42,7 @@ class Controlador:
         if self.ferramenta_atual is None: # Evita continuar caso a figura escolhida no menu não esteja implementada
             return
         
-        self.mudar_ferramenta(self.ferramenta_atual)
+        self.selecionar_ferramenta(self.ferramenta_atual)
         self.ferramenta_atual.mouse_pressionado(event)
 
     #atualizar a figura em construção, enquanto o mouse é arrastado
@@ -83,7 +83,7 @@ class Controlador:
             ferramenta.desenhar_figura(figura)
 
     #Muda a ferramenta atual para a nova ferramenta escolhida, limpando a seleção de figuras no model_desenho e redesenhando todas as figuras
-    def mudar_ferramenta(self, nova_ferramenta):
+    def selecionar_ferramenta(self, nova_ferramenta):
         self.model_desenho.limpa_selecao()
         self.ferramenta_atual = nova_ferramenta
         self.desenhar_todas_figuras()

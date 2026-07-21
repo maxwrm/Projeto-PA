@@ -19,6 +19,7 @@ class Poligono_Ferramenta(Ferramenta):
         self.controlador.desenhar_todas_figuras()
         self.desenhar_figura(self._figura_nova, dash=(4, 2))
 
+
     def mouse_arrastado(self, event, dash=None, **kwargs):
         if self._figura_nova is None:
             return
@@ -26,8 +27,10 @@ class Poligono_Ferramenta(Ferramenta):
         self.controlador.desenhar_todas_figuras()
         pontos_temporarios = self._figura_nova.pontos + [(event.x, event.y)]    
         self.controlador.view_canvas.desenhar_poligono(pontos_temporarios, fill=self._figura_nova.fill, outline=self._figura_nova.outline, width=self._figura_nova.width, dash=(4, 2))
+        
 
     def mouse_solto(self, event):
+        self._figura_nova.atualizar_coordenadas(event)
         self.mouse_arrastado(event)
 
     def doubleclick(self, event, dash=None, **kwargs):
@@ -39,5 +42,5 @@ class Poligono_Ferramenta(Ferramenta):
 
     def desenhar_figura(self, figura, dash=None, **kwargs):
         if dash==None:
-            dash=self.obter_dash(figura)
+            dash=self.obter_dash(figura) 
         self.controlador.view_canvas.desenhar_poligono(figura.pontos, fill=figura.fill, width=figura.width, outline=figura.outline, dash=dash, **kwargs)
