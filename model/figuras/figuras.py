@@ -7,7 +7,7 @@ class Figuras(ABC):
     Cada figura é responsável por se redefinir e manipular seus dados e calculos. 
     """
 
-    def __init__(self, event, fill="black", outline="black", width=1):
+    def __init__(self, event, fill="", outline="black", width=1):
         self.ini_x = event.x
         self.ini_y = event.y
         self.fim_x = event.x

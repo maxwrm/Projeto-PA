@@ -8,3 +8,4 @@ from .borracha import Borracha
 from .poligono import Poligono
 from .figuras import Figuras
 from .triangulo_reto import Triangulo_Reto
+from .selecao import Selecao

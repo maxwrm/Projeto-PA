@@ -60,14 +60,14 @@ class ViewInterface(Tk):
         self.frame_cores.grid(column=2, row=0, rowspan=2, sticky="ns", **self.paddings)
 
         #Botao para tirar o preenchimento 
-        self.botao_sem_preenchimento = Button(master=self.frame_cores, text="Sem preenchimento", font=("", 8), command=self.get_sem_cor_preenchimento)
+        self.botao_sem_preenchimento = Button(master=self.frame_cores, text="Sem preenchimento", font=("", 8), command=self.sem_cor_preenchimento)
         self.botao_sem_preenchimento.grid(column=0, row=3, columnspan=2, sticky=S, **self.paddings)
 
         #Botão e indicador de preenchimento
         self.botao_preenchimento = ttk.Button(master=self.frame_cores, text='Cor Preenchimento/Linha', command=self.escolher_cor_preenchimento)
         self.botao_preenchimento.grid(column=0, row=1, sticky=W, **self.paddings)
 
-        self.indicador_preenchimento = Label(master=self.frame_cores, width=3, height=1, bg=self._cor_preenchimento_hex)
+        self.indicador_preenchimento = Label(master=self.frame_cores, width=3, height=1, bg="lightgray")
         self.indicador_preenchimento.grid(column=1, row=1, sticky=W, **self.paddings)
 
         # Botão e Indicador de Borda
@@ -138,7 +138,7 @@ class ViewInterface(Tk):
             self._cor_borda_hex = cor[1]
             self.indicador_borda.config(bg=cor[1])
 
-    def get_sem_cor_preenchimento(self):
+    def sem_cor_preenchimento(self):
         self._cor_preenchimento_hex = ""
 
     def get_cor_preenchimento(self):

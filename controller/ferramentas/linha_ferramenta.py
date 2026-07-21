@@ -10,7 +10,7 @@ class Linha_Ferramenta(Ferramenta):
 
     #Cria uma nova Linha a partir do ponto onde o mouse foi pressionado
     def mouse_pressionado(self, event):
-        self._figura_nova = Linha(event, fill=self.controlador.view_interface.get_cor_preenchimento(), outline=self.controlador.view_interface.get_cor_borda(), width=self.controlador.view_interface.get_espessura())
+        self._figura_nova = Linha(event, fill=self.controlador.view_interface.get_cor_borda(), outline=self.controlador.view_interface.get_cor_preenchimento(), width=self.controlador.view_interface.get_espessura())
 
     #Atualiza a figura em construção e redesenha o canvas com a figura pontilhada
     def mouse_arrastado(self, event):
