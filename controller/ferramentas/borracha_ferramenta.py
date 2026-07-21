@@ -12,16 +12,16 @@ class Borracha_Ferramenta(Ferramenta):
     def mouse_pressionado(self, event):
         self._figura_nova = Borracha(event)
         self.controlador.model_desenho.limpa_selecao()
-        self.controlador.model_desenho.seleciona(event.x, event.y)
-        self.controlador.model_desenho.apaga_selecionada()
+        self.controlador.model_desenho.verificar(event.x, event.y)
+        self.controlador.model_desenho.apaga_borracha()
         self.controlador.desenhar_todas_figuras()
 
     #Deleta a figura inteira quando passa por cima dela
     def mouse_arrastado(self, event):
         self._figura_nova.atualizar_coordenadas(event)
         self.controlador.model_desenho.limpa_selecao()
-        self.controlador.model_desenho.seleciona(event.x, event.y)
-        self.controlador.model_desenho.apaga_selecionada()
+        self.controlador.model_desenho.verificar(event.x, event.y)
+        self.controlador.model_desenho.apaga_borracha()
         self.controlador.desenhar_todas_figuras()
 
     def mouse_solto(self, event):

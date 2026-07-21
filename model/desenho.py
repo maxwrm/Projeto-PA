@@ -40,6 +40,13 @@ class Desenho:
             figura.selecionada = False
         self.indice_selecionada = -1
 
+    #Verifica se tem figura onde o mouse clica
+    def verificar(self, px, py) :
+        i = len(self._figuras)-1
+        while i >= 0 and not self._figuras[i].contem(px, py) :
+            i -= 1
+        self.indice_selecionada = i
+
     #Seleciona a figura que contém o ponto (px, py), se houver, e atualiza a figura selecionada
     def seleciona(self, px, py) :
         i = len(self._figuras)-1
@@ -48,7 +55,7 @@ class Desenho:
         self.indice_selecionada = i
 
     #Responsável por retornar a figura selecionada, se houver, ou None caso contrário
-    def selecionada(self) :
+    def selecionada(self):
         if self.indice_selecionada >= 0 :
             return self._figuras[self.indice_selecionada]
         else :
@@ -106,6 +113,13 @@ class Desenho:
 
     #Deleta a figura selecionada
     def apaga_selecionada(self) :
+        s = self.indice_selecionada 
+        if s != -1 :
+            self._figuras_removidas.append(self._figuras.pop(s))
+            self.indice_selecionada = -1
+    
+    #Deleta a figura quq borracha selecionar
+    def apaga_borracha(self) :
         s = self.indice_selecionada 
         if s != -1 :
             self._figuras_removidas.append(self._figuras.pop(s))

@@ -44,3 +44,9 @@ class Poligono_Ferramenta(Ferramenta):
         if dash==None:
             dash=self.obter_dash(figura) 
         self.controlador.view_canvas.desenhar_poligono(figura.pontos, fill=figura.fill, width=figura.width, outline=figura.outline, dash=dash, **kwargs)
+
+    #reseta o poligono
+    def resetar(self):
+        self._figura_nova = None
+        if self.controlador:
+            self.controlador.desenhar_todas_figuras()

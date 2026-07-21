@@ -32,37 +32,36 @@ class Controlador:
             "Selecao": Selecao_Ferramenta(self)
         }
 
-        self.ferramenta_atual = None
+        self._ferramenta_atual = None
     
     #iniciar a criação de uma figura, a partir do ponto onde o mouse foi pressionado 
     def iniciar_figura(self, event):
         tipo = self.view_interface.get_tipo_figura()
-        self.ferramenta_atual = self.ferramentas.get(tipo)
+        self._ferramenta_atual = self.ferramentas.get(tipo)
 
-        if self.ferramenta_atual is None: # Evita continuar caso a figura escolhida no menu não esteja implementada
+        if self._ferramenta_atual is None: # Evita continuar caso a figura escolhida no menu não esteja implementada
             return
         
-        self.selecionar_ferramenta(self.ferramenta_atual)
-        self.ferramenta_atual.mouse_pressionado(event)
+        self.model_desenho.limpa_selecao()
+        self._ferramenta_atual.mouse_pressionado(event)
 
     #atualizar a figura em construção, enquanto o mouse é arrastado
     def atualizar_figura(self, event):
-        if self.ferramenta_atual == None:
+        if self._ferramenta_atual == None:
             return
 
-        self.ferramenta_atual.mouse_arrastado(event)
+        self._ferramenta_atual.mouse_arrastado(event)
 
     #finalizar a criação da figura, quando o mouse é solto
     def finalizar_figura(self, event):
-        if self.ferramenta_atual == None:
+        if self._ferramenta_atual == None:
             return
 
-        self.ferramenta_atual.mouse_solto(event)
-        self.ferramenta_atual = None
+        self._ferramenta_atual.mouse_solto(event)
 
     #<Double-Button-1>, usado para finalizar a criação de figuras que necessitam de mais de 2 pontos, como o polígono
     def mouse_clicado_2(self, event):
-        # Como o <ButtonRelease-1> limpa a ferramenta_atual, precisamos resgatá-la
+        # Como o <ButtonRelease-1> limpa a _ferramenta_atual, precisamos resgatá-la
         tipo = self.view_interface.get_tipo_figura()
         ferramenta = self.ferramentas.get(tipo)
 
@@ -73,7 +72,6 @@ class Controlador:
         if hasattr(ferramenta, 'doubleclick'):
             ferramenta.doubleclick(event)
             
-        self.ferramenta_atual = None
 
     #Redesenha, do zero, todas as figuras já salvas no model_desenho
     def desenhar_todas_figuras(self):
@@ -83,9 +81,14 @@ class Controlador:
             ferramenta.desenhar_figura(figura)
 
     #Muda a ferramenta atual para a nova ferramenta escolhida, limpando a seleção de figuras no model_desenho e redesenhando todas as figuras
-    def selecionar_ferramenta(self, nova_ferramenta):
+    def reset(self, nova_ferramenta):
         self.model_desenho.limpa_selecao()
-        self.ferramenta_atual = nova_ferramenta
+        
+        # Se já existe uma ferramenta ativa (ex: Polígono pela metade), manda ela resetar o estado antes de trocar
+        if self._ferramenta_atual is not None and hasattr(self._ferramenta_atual, 'resetar'):
+            self._ferramenta_atual.resetar()
+            
+        self._ferramenta_atual = nova_ferramenta
         self.desenhar_todas_figuras()
 
     #Limpa todo o quadro canvas
