@@ -21,6 +21,10 @@ class Rabisco(Figuras):
     def incompleta(self):
         return len(self.pontos) <= 1
 
+    #Verifica se a figura está dentro da area do slecionar    
+    def dentro(self, min_x, min_y, max_x, max_y):
+        return min_x <= self.ini_x <= max_x and min_x <= self.fim_x <= max_x and min_y <= self.ini_y <= max_y and min_y <= self.fim_y <= max_y
+
     # (px, py) está perto (<=epsilon) de self
     def contem(self, px, py):
         epsilon = 3

@@ -30,6 +30,9 @@ class Poligono_Ferramenta(Ferramenta):
         
 
     def mouse_solto(self, event):
+        if self._figura_nova is None:
+            return
+        
         self._figura_nova.atualizar_coordenadas(event)
         self.mouse_arrastado(event)
 

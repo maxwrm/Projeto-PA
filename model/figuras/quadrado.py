@@ -43,6 +43,10 @@ class Quadrado(Figuras):
 
         return x, y
 
+    #Verifica se a figura está dentro da area do slecionar    
+    def dentro(self, min_x, min_y, max_x, max_y):
+        return min_x <= self.ini_x <= max_x and min_x <= self.fim_x <= max_x and min_y <= self.ini_y <= max_y and min_y <= self.fim_y <= max_y
+
     #Verifica se o ponto clicado na tela contém a figura
     def contem(self, px, py):
         margem = max(3, self.width)

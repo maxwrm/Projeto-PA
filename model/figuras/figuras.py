@@ -28,6 +28,11 @@ class Figuras(ABC):
     def incompleta(self):
         pass
 
+    #Verifica se a figura está dentro da area do slecionar
+    @abstractmethod
+    def dentro(self, min_x, min_y, max_x, max_y):
+        pass
+
     #Verifica se o ponto clicado na tela contém uma figura
     @abstractmethod
     def contem(self, px, py):
