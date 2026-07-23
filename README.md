@@ -26,7 +26,7 @@ An interactive desktop application for vector drawing and digital whiteboard bui
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Linguage and techs
 
 * **Language:** Python 3.10+
 * **GUI Toolkit:** Tkinter (Python's native GUI library)
@@ -86,7 +86,7 @@ Projeto-PA/
 └── README.md
 ```
 
-## 🚀 Getting Started
+## 🚀 Repository
 
 ```bash
 git clone [https://github.com/MichaelCarvalhoUFS/Da-vinci.git]
