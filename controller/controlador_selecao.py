@@ -33,6 +33,8 @@ class ControladorSelecao:
         
         root.bind("<Delete>", self.atua_com(self.desenho.apaga_selecionada))
 
+        root.bind("<BackSpace>", self.atua_com(self.desenho.apaga_selecionada))
+
     #atualiza a borda da figura selecionada com a cor escolhida na interface
     def escolher_e_atualizar_borda(self):
         self.view_interface.escolher_cor_borda()

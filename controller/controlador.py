@@ -33,6 +33,15 @@ class Controlador:
         }
 
         self._ferramenta_atual = None
+
+        #Associa eventos à métodos da própria função.
+        self.view_canvas.canvas.bind("<ButtonPress-1>", self.iniciar_figura)
+        self.view_canvas.canvas.bind("<B1-Motion>", self.atualizar_figura)
+        self.view_canvas.canvas.bind("<ButtonRelease-1>", self.finalizar_figura)
+        self.view_canvas.canvas.bind("<Double-Button-1>", self.mouse_clicado_2)
+        self.view_canvas.canvas.bind("<Control-z>", self.desfazer)
+        self.view_canvas.canvas.bind("<Control-y>", self.refazer)
+        self.view_menu_arquivo.bind("<Control-P>", self.view_menu_arquivo.ativar)
     
     #iniciar a criação de uma figura, a partir do ponto onde o mouse foi pressionado 
     def iniciar_figura(self, event):
@@ -49,7 +58,6 @@ class Controlador:
     def atualizar_figura(self, event):
         if self._ferramenta_atual == None:
             return
-
         self._ferramenta_atual.mouse_arrastado(event)
 
     #finalizar a criação da figura, quando o mouse é solto

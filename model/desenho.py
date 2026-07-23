@@ -10,6 +10,7 @@ class Desenho:
     def __init__(self):
         self._figuras = []
         self._figuras_removidas = []  # Lista para armazenar figuras removidas para refazer
+        self._selecionadas = []
         self.indice_selecionada = -1
         self.buffer = None
 
@@ -48,7 +49,7 @@ class Desenho:
         self.indice_selecionada = i
 
     #Seleciona a figura que contém o ponto (px, py), se houver, e atualiza a figura selecionada
-    def seleciona(self, px, py) :
+    def selecionar(self, px, py) :
         i = len(self._figuras)-1
         while i >= 0 and not self._figuras[i].contem(px, py) :
             i -= 1

@@ -12,7 +12,7 @@ class ViewInterface(Tk):
     def __init__(self):
         super().__init__()
         #Titulo e tamanho da janela
-        self.title("Desenhando Figuras com tkinter")
+        self.title("Da Vinci")
         self.geometry("1400x1400")
         
         self.frame = ttk.Frame(self)
