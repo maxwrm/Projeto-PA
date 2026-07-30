@@ -126,6 +126,8 @@ class ViewInterface(Tk):
 
     #Escolhe a cor de preenchimento/linha, atualizando o indicador de cor e a variável correspondente
     def escolher_cor_preenchimento(self):
+        if self._cor_preenchimento_hex == "":
+            self._cor_preenchimento_hex = None
         cor = colorchooser.askcolor(title="Escolha a cor de preenchimento/linha", initialcolor=self._cor_preenchimento_hex)
         if cor[1]: # Se o usuário não cancelar a janela
             self._cor_preenchimento_hex = cor[1]
